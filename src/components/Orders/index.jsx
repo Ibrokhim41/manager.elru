@@ -42,7 +42,7 @@ const Orders = () => {
           <input type="checkbox" className="cursor-pointer checked:bg-blue" />
         </div>
         <div className="w-1/18 border border-grey-border flex items-center justify-center py-1">
-          <img src={item.image} alt="image" />
+          <img src={item.image} alt="book_image" />
         </div>
         <div className="w-4/18 border border-grey-border flex items-center pl-2 py-1">
           {item.name}
