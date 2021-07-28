@@ -4,8 +4,8 @@ import {
   VscClose,
   VscChevronRight,
 } from "react-icons/vsc";
-import {MdBlock} from "react-icons/md"
-import {BsTrash} from "react-icons/bs"
+import { MdBlock } from "react-icons/md";
+import { BsTrash } from "react-icons/bs";
 import { HiDocumentDownload } from "react-icons/hi";
 import { IoMdImages } from "react-icons/io";
 import DatePicker from "react-datepicker";
@@ -13,10 +13,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { forwardRef, useState } from "react";
 import Select from "react-select";
 import { useHistory } from "react-router-dom";
+import DeleteModal from "./DeleteModal";
 
 const EditBook = () => {
   const route = useHistory();
-  const [cancle, setCancle] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const [publicDate, setPublicDate] = useState(new Date());
   const CustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -31,10 +32,13 @@ const EditBook = () => {
 
   return (
     <div className="container mx-auto">
+      <DeleteModal
+        confirmDelete={confirmDelete}
+        setConfirmDelete={setConfirmDelete}
+      />
       <div className="pt-24"></div>
       <div
         onClick={() => {
-          setCancle(true);
           route.push("/orders");
         }}
         className="flex items-center text-blue ctext-lg font-medium cursor-pointer"
@@ -619,13 +623,7 @@ const EditBook = () => {
       {/* add, cancle */}
       <div className="flex flex-col md:flex-row md:justify-around pb-10">
         <button className="bg-blue w-full md:w-1/3 py-1 lg:py-2 cursor-pointer rounded-md flex justify-center text-white ctext-lg font-medium">
-          Добавить на сайт
-        </button>
-        <button
-          onClick={() => setCancle(true)}
-          className="bg-red w-full md:w-1/3 py-1 lg:py-2 mt-4 md:mt-0 cursor-pointer rounded-md flex justify-center text-white ctext-lg font-medium"
-        >
-          Отмена
+          Сохранить изменения
         </button>
       </div>
     </div>
