@@ -7,7 +7,7 @@ const DeleteModal = ({ confirmDelete, setConfirmDelete }) => {
         confirmDelete ? "translate-x-0" : "-translate-x-full"
       } bg-white w-screen h-screen flex flex-col justify-center items-center`}
     >
-      <div className="text-black ctext-xl font-bold text-center px-4">
+      <div className="text-black ctext-xl font-bold text-center px-4 mb-6">
         Вы уверены, что хотите удалить товар?
       </div>
       <div className="flex ">

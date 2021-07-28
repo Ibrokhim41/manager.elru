@@ -55,7 +55,9 @@ const EditBook = () => {
             <MdBlock className="mr-1" />
             Отключить
           </button>
-          <button className="flex items-center bg-red-dark rounded-md text-white ctext-base font-medium py-1 px-1 md:px-4">
+          <button 
+            onClick={() => setConfirmDelete(true)}
+            className="flex items-center bg-red-dark rounded-md text-white ctext-base font-medium py-1 px-1 md:px-4">
             <BsTrash className="mr-1" />
             Удалить
           </button>
