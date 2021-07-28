@@ -6,6 +6,7 @@ import Clients from "components/Clients";
 import Balance from "components/Balance";
 import Example from "components/exmaple";
 import Managers from "components/Managers";
+import AddBook from "components/AddBook";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/clients" component={Clients} />
           <Route path="/balance" component={Balance} />
           <Route path="/managers" component={Managers} />
+          <Route path="/add-book" component={AddBook} />
           <Route path="/example" component={Example} />
         </Switch>
       </Router>

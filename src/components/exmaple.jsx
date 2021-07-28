@@ -1,10 +1,10 @@
-const { default: AddManager } = require("./Modals/AddManager")
+const { default: AddBook } = require("./AddBook")
 
 const Example = () => {
 
     return (
         <div>
-            <AddManager />
+            <AddBook/>
         </div>
     )
 }

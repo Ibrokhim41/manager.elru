@@ -8,11 +8,14 @@ import { BiEraser } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "../../redux/common";
 import { useWindowDimensions } from "../../hooks/ScreenWidth";
+import { useHistory } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 
 const Sidebar = () => {
   const filter = useSelector((state) => state.common.filter);
   const dispatch = useDispatch();
+
+  const route = useHistory()
 
   // const location = useLocation();
   const { width } = useWindowDimensions();
@@ -29,7 +32,9 @@ const Sidebar = () => {
       />
       <div className="py-6 px-4">
         {/* add item */}
-        <button className="flex items-center justify-center w-full rounded-md py-2.5 mb-4 bg-blue text-white ctext-base font font-medium">
+        <button 
+          onClick={() => route.push('/add-book')}
+          className="flex items-center justify-center w-full rounded-md py-2.5 mb-4 bg-blue text-white ctext-base font font-medium">
           Добавить товар <BsPlus className="text-xl" />
         </button>
         {/* title */}
