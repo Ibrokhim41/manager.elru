@@ -13,28 +13,35 @@ import { BiFilterAlt } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { setFilter } from "../../redux/common";
 import animatedScrollTo from "animated-scroll-to";
+import { useWindowScrollDimensions } from "hooks/WindowSroll";
 // import OrderInside from "components/OrderInside";
 
 const Orders = () => {
   const dispatch = useDispatch();
 
-
   const [items, setItems] = useState(JsonData);
-  const [itemsNav, setItemsNav] =useState(true)
+  const [itemsNav, setItemsNav] = useState(true);
   // const [pageNumber, setPageNumber] = useState(0);
 
   // const forPerPage = 9;
   // const pagesVisited = pageNumber * forPerPage;
-  const navigateToTop = () => {
-    animatedScrollTo(0)
-  }
+  const wScrollY = useWindowScrollDimensions();
 
   useEffect(() => {
-    setItems(JsonData);
+    setItems(JsonData.slice(0,75));
     animatedScrollTo(0);
   }, []);
 
-  
+  // screenLeft: 0
+  // screenTop: 0
+  // screenX: 0
+  // screenY: 0
+  // scroll: ƒ scroll()
+  // scrollBy: ƒ scrollBy()
+  // scrollTo: ƒ scrollTo()
+  // scrollX: 0
+  // scrollY: 0
+
   const displayItems = items.map((item, i) => {
     return (
       <div key={i} className="flex">
@@ -55,12 +62,12 @@ const Orders = () => {
         </div>
         <div className="w-2/18 border border-grey-border flex items-center justify-center pl-2 py-1 text-grey-black ctext-xs font-medium">
           <div className="bg-green-light px-2 py-0.5 rounded-md text-black">
-            {Math.ceil(Math.random() * 1000000)}
+            562623
           </div>
         </div>
         <div className="w-2/18 border border-grey-border flex items-center justify-center pl-2 py-1 text-grey-black ctext-xs font-medium">
           <div className="bg-brown-light px-2 py-0.5 rounded-md text-black">
-            {Math.ceil(Math.random() * 100000)}
+            9653
           </div>
         </div>
         <div className="w-2/18 border border-grey-border flex items-center justify-center pl-2 py-1">
@@ -120,19 +127,34 @@ const Orders = () => {
   // );
 
   return (
-    <div className="overflow-scroll hide-scroll-y container no-padding mx-auto bg-grey-bg">
+    <div
+      className="overflow-scroll hide-scroll-y container no-padding mx-auto bg-grey-bg"
+    >
       {/* navigate-to-top */}
-      <BiUpArrowCircle  
-        onClick={navigateToTop}
-        className={`${true ? 'block' : 'hidden'} fixed bottom-4 right-4 text-5xl text-white cursor-pointer bg-green-light rounded-full`} />
+      <BiUpArrowCircle
+        onClick={() => animatedScrollTo(0)}
+        className={`${
+          wScrollY > 900 ? "-translate-y-5" : "translate-y-full"
+        } fixed transform transition-all bottom-0 right-4 text-5xl text-white cursor-pointer bg-green-light rounded-full`}
+      />
       {/* navigate items */}
       <div className="mt-24 mb-8 mx-4 flex text-grey-dark ctext-lg font-medium">
-        <div 
+        <div
           onClick={() => setItemsNav(true)}
-          className={`${itemsNav && 'text-blue underline'} hover:text-blue hover:underline cursor-pointer`}>Товары на сайте</div>
-        <div 
+          className={`${
+            itemsNav && "text-blue underline"
+          } hover:text-blue hover:underline cursor-pointer`}
+        >
+          Товары на сайте
+        </div>
+        <div
           onClick={() => setItemsNav(false)}
-          className={`${!itemsNav && 'text-blue underline'} ml-4 hover:text-blue hover:underline cursor-pointer`}>Отключенные</div>
+          className={`${
+            !itemsNav && "text-blue underline"
+          } ml-4 hover:text-blue hover:underline cursor-pointer`}
+        >
+          Отключенные
+        </div>
       </div>
 
       <div className="orders-table px-4">
