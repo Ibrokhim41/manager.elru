@@ -14,10 +14,13 @@ import { useDispatch } from "react-redux";
 import { setFilter } from "../../redux/common";
 import animatedScrollTo from "animated-scroll-to";
 import { useWindowScrollDimensions } from "hooks/WindowSroll";
+import { useHistory } from "react-router-dom";
 // import OrderInside from "components/OrderInside";
 
 const Orders = () => {
   const dispatch = useDispatch();
+
+  const route = useHistory()
 
   const [items, setItems] = useState(JsonData);
   const [itemsNav, setItemsNav] = useState(true);
@@ -71,7 +74,9 @@ const Orders = () => {
           </div>
         </div>
         <div className="w-2/18 border border-grey-border flex items-center justify-center pl-2 py-1">
-          <div className="p-2 bg-blue rounded-md cursor-pointer text-white text-lg">
+          <div 
+            onClick={() => route.push('/edit-book')}
+            className="p-2 bg-blue rounded-md cursor-pointer text-white text-lg">
             <BiPencil />
           </div>
         </div>

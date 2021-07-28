@@ -7,6 +7,7 @@ import Balance from "components/Balance";
 import Example from "components/exmaple";
 import Managers from "components/Managers";
 import AddBook from "components/AddBook";
+import EditBook from "components/EditBook";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/balance" component={Balance} />
           <Route path="/managers" component={Managers} />
           <Route path="/add-book" component={AddBook} />
+          <Route path="/edit-book" component={EditBook} />
           <Route path="/example" component={Example} />
         </Switch>
       </Router>
