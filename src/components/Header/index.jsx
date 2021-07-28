@@ -58,19 +58,19 @@ const Header = () => {
               </div>
             </div>
             <div
-              onClick={() => route.push("/clients")}
+              onClick={() => route.push("/categories")}
               className={`${
-                location.pathname === "/clients" && "header-active"
+                location.pathname === "/categories" && "header-active"
               } px-4 cursor-pointer hover:bg-blue group flex items-center justify-center py-4 flex-grow`}
             >
               <AiOutlineAppstore
                 className={`${
-                  location.pathname === "/clients" ? "text-white" : "text-blue"
+                  location.pathname === "/categories" ? "text-white" : "text-blue"
                 } text-2xl mr-2 group-hover:text-white`}
               />
               <div
                 className={`${
-                  location.pathname === "/clients"
+                  location.pathname === "/categories"
                     ? "text-white"
                     : "text-grey-dark"
                 } ctext-base group-hover:text-white font-bold`}
@@ -200,20 +200,20 @@ const Header = () => {
             <div
               onClick={() => {
                 setShowMenu(false);
-                route.push("/clients");
+                route.push("/categories");
               }}
               className={`${
-                location.pathname === "/clients" && "header-active"
+                location.pathname === "/categories" && "header-active"
               } px-6 cursor-pointer hover:bg-blue group flex items-center py-4 flex-grow`}
             >
               <AiOutlineAppstore
                 className={`${
-                  location.pathname === "/clients" ? "text-white" : "text-blue"
+                  location.pathname === "/categories" ? "text-white" : "text-blue"
                 } text-2xl mr-2 group-hover:text-white`}
               />
               <div
                 className={`${
-                  location.pathname === "/clients"
+                  location.pathname === "/categories"
                     ? "text-white"
                     : "text-grey-dark"
                 } ctext-base group-hover:text-white font-bold`}

@@ -2,12 +2,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Orders from "./components/Orders";
 import Header from "./components/Header";
-import Clients from "components/Clients";
 import Balance from "components/Balance";
 import Example from "components/exmaple";
 import Managers from "components/Managers";
 import AddBook from "components/AddBook";
 import EditBook from "components/EditBook";
+import Categories from "components/Categories";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Switch>
           <Route path="/" component={Login} exact />
           <Route path="/orders" component={Orders} />
-          <Route path="/clients" component={Clients} />
+          <Route path="/categories" component={Categories} />
           <Route path="/balance" component={Balance} />
           <Route path="/managers" component={Managers} />
           <Route path="/add-book" component={AddBook} />
