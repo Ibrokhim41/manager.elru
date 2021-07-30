@@ -94,7 +94,7 @@ const Clients = () => {
           nextLabel={next}
           pageCount={pageCount}
           onPageChange={changePage}
-          containerClassName="pagination flex text-grey-dark font-medium"
+          containerClassName="pagination flex text-grey-dark "
           activeClassName="text-white bg-blue"
         />
         <BsFilter
@@ -105,7 +105,7 @@ const Clients = () => {
 
       <div className="orders-table col-span-12 lg:col-span-9 lg:pr-4 mt-4">
         {/* title */}
-        <div className="grid grid-cols-6 bg-white p-2 text-grey-dark ctext-base font-medium">
+        <div className="grid grid-cols-6 bg-white p-2 text-grey-dark ctext-base ">
           <div className="col-span-2">Клиент</div>
           <div className="col-span-1">Дата регистрации</div>
           <div className="col-span-2">Телефон / E - mail</div>

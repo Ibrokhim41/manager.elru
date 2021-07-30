@@ -4,8 +4,6 @@ import {
   VscClose,
   VscChevronRight,
 } from "react-icons/vsc";
-import { MdBlock } from "react-icons/md";
-import { BsTrash } from "react-icons/bs";
 import { HiDocumentDownload } from "react-icons/hi";
 import { IoMdImages } from "react-icons/io";
 import DatePicker from "react-datepicker";
@@ -13,11 +11,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { forwardRef, useState } from "react";
 import Select from "react-select";
 import { useHistory } from "react-router-dom";
-import DeleteModal from "./DeleteModal";
+import CancleModal from "./CancelModal";
 
-const EditBook = () => {
-  const route = useHistory();
-  const [confirmDelete, setConfirmDelete] = useState(false);
+const AddBook = () => {
+
+  const route = useHistory()
+  const [cancle, setCancle] = useState(false)
 
   const [publicDate, setPublicDate] = useState(new Date());
   const CustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -32,36 +31,19 @@ const EditBook = () => {
 
   return (
     <div className="container mx-auto">
-      <DeleteModal
-        confirmDelete={confirmDelete}
-        setConfirmDelete={setConfirmDelete}
-      />
+      <CancleModal cancle={cancle} setCancle={setCancle} />
       <div className="pt-24"></div>
-      <div
+      <div 
         onClick={() => {
-          route.push("/orders");
+          setCancle(true)
+          route.push('/orders')
         }}
-        className="flex items-center text-blue ctext-lg font-medium cursor-pointer"
-      >
+        className="inline-flex items-center text-blue ctext-lg font-medium cursor-pointer">
         <VscChevronLeft className="text-2xl" /> Назад
       </div>
 
-      <div className="flex justify-between items-center my-6">
-        <div className="text-grey-dark ctext-lg font-medium">
-          Добавление товара
-        </div>
-        <div className="flex">
-          <button className="flex items-center mr-1 md:mr-4 bg-brown-dark rounded-md text-white ctext-base font-medium py-1 px-1 md:px-4">
-            <MdBlock className="mr-1" />
-            Отключить
-          </button>
-          <button 
-            onClick={() => setConfirmDelete(true)}
-            className="flex items-center bg-red-dark rounded-md text-white ctext-base font-medium py-1 px-1 md:px-4">
-            <BsTrash className="mr-1" />
-            Удалить
-          </button>
-        </div>
+      <div className="text-grey-dark ctext-lg font-medium my-6">
+        Добавление товара
       </div>
 
       {/* fill */}
@@ -616,7 +598,9 @@ const EditBook = () => {
           </div>
         </div>
         {/* add from list */}
-        <div className="flex items-center text-blue ctext-lg font-medium cursor-pointer my-6">
+        <div 
+          onClick={() => route.push('/add-smillar-books')}
+          className="flex items-center text-blue ctext-lg font-medium cursor-pointer my-6">
           Добавить из списка
           <VscChevronRight className="text-xl" />
         </div>
@@ -625,11 +609,16 @@ const EditBook = () => {
       {/* add, cancle */}
       <div className="flex flex-col md:flex-row md:justify-around pb-10">
         <button className="bg-blue w-full md:w-1/3 py-1 lg:py-2 cursor-pointer rounded-md flex justify-center text-white ctext-lg font-medium">
-          Сохранить изменения
+          Добавить на сайт
+        </button>
+        <button 
+          onClick={() => setCancle(true)}
+          className="bg-red w-full md:w-1/3 py-1 lg:py-2 mt-4 md:mt-0 cursor-pointer rounded-md flex justify-center text-white ctext-lg font-medium">
+          Отмена
         </button>
       </div>
     </div>
   );
 };
 
-export default EditBook;
+export default AddBook;

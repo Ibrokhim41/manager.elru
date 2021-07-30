@@ -49,10 +49,10 @@ const Orders = () => {
     return (
       <div key={i} className="flex">
         <div className="w-1/18 border border-grey-border flex items-center justify-center py-1">
-          <input type="checkbox" className="cursor-pointer checked:bg-blue" />
+          <input type="checkbox" className="cursor-pointer checked:bg-blue w-5 h-5" />
         </div>
         <div className="w-1/18 border border-grey-border flex items-center justify-center py-1">
-          <img src={item.image} alt="book_image" />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpcvH11KPSLih420G7Eq3sLi7CRc0j6zzAnQ&usqp=CAU" alt="book_image" className="w-full h-full" />
         </div>
         <div className="w-4/18 border border-grey-border flex items-center pl-2 py-1">
           {item.name}
@@ -201,7 +201,7 @@ const Orders = () => {
         {/* title */}
         <div className="flex">
           <div className="w-1/18 border border-grey-border flex items-center justify-center py-1">
-            <input type="checkbox" className="cursor-pointer" />
+            <input type="checkbox" className="cursor-pointer w-5 h-5" />
           </div>
           <div className="w-1/18 border border-grey-border flex items-center justify-center py-1 text-grey-dark ctext-sm font-medium">
             Фото

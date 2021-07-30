@@ -4,6 +4,8 @@ import {
   VscClose,
   VscChevronRight,
 } from "react-icons/vsc";
+import { MdBlock } from "react-icons/md";
+import { BsTrash } from "react-icons/bs";
 import { HiDocumentDownload } from "react-icons/hi";
 import { IoMdImages } from "react-icons/io";
 import DatePicker from "react-datepicker";
@@ -11,12 +13,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { forwardRef, useState } from "react";
 import Select from "react-select";
 import { useHistory } from "react-router-dom";
-import CancleModal from "./CancelModal";
+import DeleteModal from "./DeleteModal";
 
-const AddBook = () => {
-
-  const route = useHistory()
-  const [cancle, setCancle] = useState(false)
+const EditBook = () => {
+  const route = useHistory();
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const [publicDate, setPublicDate] = useState(new Date());
   const CustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -31,26 +32,43 @@ const AddBook = () => {
 
   return (
     <div className="container mx-auto">
-      <CancleModal cancle={cancle} setCancle={setCancle} />
+      <DeleteModal
+        confirmDelete={confirmDelete}
+        setConfirmDelete={setConfirmDelete}
+      />
       <div className="pt-24"></div>
-      <div 
+      <div
         onClick={() => {
-          setCancle(true)
-          route.push('/orders')
+          route.push("/orders");
         }}
-        className="flex items-center text-blue ctext-lg font-medium cursor-pointer">
+        className="inline-flexflex items-center text-blue ctext-lg  cursor-pointer"
+      >
         <VscChevronLeft className="text-2xl" /> Назад
       </div>
 
-      <div className="text-grey-dark ctext-lg font-medium my-6">
-        Добавление товара
+      <div className="flex justify-between items-center my-6">
+        <div className="text-grey-dark ctext-lg ">
+          Добавление товара
+        </div>
+        <div className="flex">
+          <button className="flex items-center mr-1 md:mr-4 bg-brown-dark rounded-md text-white ctext-base  py-1 px-1 md:px-4">
+            <MdBlock className="mr-1" />
+            Отключить
+          </button>
+          <button 
+            onClick={() => setConfirmDelete(true)}
+            className="flex items-center bg-red-dark rounded-md text-white ctext-base  py-1 px-1 md:px-4">
+            <BsTrash className="mr-1" />
+            Удалить
+          </button>
+        </div>
       </div>
 
       {/* fill */}
       <div className="flex flex-col">
         <label
           htmlFor="item_name"
-          className="text-grey-dark ctext-base font-medium"
+          className="text-grey-dark ctext-base "
         >
           Название товара
         </label>
@@ -65,7 +83,7 @@ const AddBook = () => {
       <div className="flex flex-col">
         <label
           htmlFor="item_description"
-          className="text-grey-dark ctext-base font-medium"
+          className="text-grey-dark ctext-base "
         >
           Описание
         </label>
@@ -83,7 +101,7 @@ const AddBook = () => {
         <div className="flex items-center  mt-2 sm:mt-0">
           <label
             htmlFor="item_year"
-            className="text-grey-dark ctext-base font-medium"
+            className="text-grey-dark ctext-base "
           >
             Год:
           </label>
@@ -97,7 +115,7 @@ const AddBook = () => {
         <div className="flex items-center  mt-2 sm:mt-0">
           <label
             htmlFor="item_year"
-            className="text-grey-dark ctext-base font-medium"
+            className="text-grey-dark ctext-base "
           >
             Дата публикации:
           </label>
@@ -111,7 +129,7 @@ const AddBook = () => {
         <div className="flex items-center  mt-2 sm:mt-0">
           <label
             htmlFor="item_page_number"
-            className="text-grey-dark ctext-base font-medium sm:text-right"
+            className="text-grey-dark ctext-base  sm:text-right"
           >
             Кол-во страниц:
           </label>
@@ -127,7 +145,7 @@ const AddBook = () => {
       {/* LDAC */}
       <div className="my-6">
         <div className="flex sm:items-center justify-between flex-col sm:flex-row md:w-2/3 mt-4">
-          <div className="text-grey-dark ctext-base font-medium w-1/5">
+          <div className="text-grey-dark ctext-base  w-1/5">
             Язык:
           </div>
           <div className="w-full sm:w-4/5 flex items-center justify-between">
@@ -135,7 +153,7 @@ const AddBook = () => {
               className="w-4/5 cursor-pointer sm:mx-4 ctext-xs"
               placeholder="Выберите язык"
             />
-            <div className="w-1/5 ml-4 text-blue ctext-base font-medium flex items-center cursor-pointer">
+            <div className="w-1/5 ml-4 text-blue ctext-base  flex items-center cursor-pointer">
               Добавить
               <VscAdd className="hidden sm:block text-lg ml-1" />
             </div>
@@ -143,7 +161,7 @@ const AddBook = () => {
         </div>
         {/*  */}
         <div className="flex sm:items-center justify-between flex-col sm:flex-row md:w-2/3 mt-4">
-          <div className="text-grey-dark ctext-base font-medium w-1/5">
+          <div className="text-grey-dark ctext-base  w-1/5">
             Издательство:
           </div>
           <div className="w-full sm:w-4/5 flex items-center justify-between">
@@ -151,7 +169,7 @@ const AddBook = () => {
               className="w-4/5 cursor-pointer sm:mx-4 ctext-xs"
               placeholder="Выберите издательство"
             />
-            <div className="w-1/5 ml-4 text-blue ctext-base font-medium flex items-center cursor-pointer">
+            <div className="w-1/5 ml-4 text-blue ctext-base  flex items-center cursor-pointer">
               Добавить
               <VscAdd className="hidden sm:block text-lg ml-1" />
             </div>
@@ -159,7 +177,7 @@ const AddBook = () => {
         </div>
         {/*  */}
         <div className="flex sm:items-center justify-between flex-col sm:flex-row md:w-2/3 mt-4">
-          <div className="text-grey-dark ctext-base font-medium w-1/5">
+          <div className="text-grey-dark ctext-base  w-1/5">
             Автор:
           </div>
           <div className="w-full sm:w-4/5 flex items-center justify-between">
@@ -167,7 +185,7 @@ const AddBook = () => {
               className="w-4/5 cursor-pointer sm:mx-4 ctext-xs"
               placeholder="Выберите автора"
             />
-            <div className="w-1/5 ml-4 text-blue ctext-base font-medium flex items-center cursor-pointer">
+            <div className="w-1/5 ml-4 text-blue ctext-base  flex items-center cursor-pointer">
               Добавить
               <VscAdd className="hidden sm:block text-lg ml-1" />
             </div>
@@ -175,7 +193,7 @@ const AddBook = () => {
         </div>
         {/*  */}
         <div className="flex sm:items-center justify-between flex-col sm:flex-row md:w-2/3 mt-4">
-          <div className="text-grey-dark ctext-base font-medium w-1/5">
+          <div className="text-grey-dark ctext-base  w-1/5">
             Категории:
           </div>
           <div className="w-full sm:w-4/5 flex items-center justify-between">
@@ -183,7 +201,7 @@ const AddBook = () => {
               className="w-4/5 cursor-pointer sm:mx-4 ctext-xs"
               placeholder="Выберите категории"
             />
-            <div className="w-1/5 ml-4 text-blue ctext-base font-medium flex items-center cursor-pointer">
+            <div className="w-1/5 ml-4 text-blue ctext-base  flex items-center cursor-pointer">
               Добавить
               <VscAdd className="hidden sm:block text-lg ml-1" />
             </div>
@@ -296,7 +314,7 @@ const AddBook = () => {
           <div className="flex items-center mt-4 xl:mt-0 xl:mx-2">
             <label
               htmlFor="book_without_discout"
-              className="text-grey-dark ctext-base font-medium cursor-pointer"
+              className="text-grey-dark ctext-base  cursor-pointer"
             >
               Цена без скидки (сум):
             </label>
@@ -310,7 +328,7 @@ const AddBook = () => {
           <div className="flex items-center mt-4 xl:mt-0 xl:mx-2">
             <label
               htmlFor="book_with_discout"
-              className="text-grey-dark ctext-base font-medium cursor-pointer"
+              className="text-grey-dark ctext-base  cursor-pointer"
             >
               Цена со скидкой (сум):
             </label>
@@ -324,7 +342,7 @@ const AddBook = () => {
           <div className="flex items-center mt-4 xl:mt-0 xl:mx-2">
             <label
               htmlFor="book_pages"
-              className="text-grey-dark ctext-base font-medium cursor-pointer"
+              className="text-grey-dark ctext-base  cursor-pointer"
             >
               Кол - во:
             </label>
@@ -367,7 +385,7 @@ const AddBook = () => {
           <div className="flex items-center mt-4 xl:mt-0 xl:mx-2">
             <label
               htmlFor="book_without_discout2"
-              className="text-grey-dark ctext-base font-medium cursor-pointer"
+              className="text-grey-dark ctext-base  cursor-pointer"
             >
               Цена без скидки (сум):
             </label>
@@ -381,7 +399,7 @@ const AddBook = () => {
           <div className="flex items-center mt-4 xl:mt-0 xl:mx-2">
             <label
               htmlFor="book_with_discout2"
-              className="text-grey-dark ctext-base font-medium cursor-pointer"
+              className="text-grey-dark ctext-base  cursor-pointer"
             >
               Цена со скидкой (сум):
             </label>
@@ -433,7 +451,7 @@ const AddBook = () => {
           <div className="flex items-center mt-4 xl:mt-0 xl:mx-2">
             <label
               htmlFor="book_without_discout3"
-              className="text-grey-dark ctext-base font-medium cursor-pointer"
+              className="text-grey-dark ctext-base  cursor-pointer"
             >
               Цена без скидки (сум):
             </label>
@@ -447,7 +465,7 @@ const AddBook = () => {
           <div className="flex items-center mt-4 xl:mt-0 xl:mx-2">
             <label
               htmlFor="book_with_discout3"
-              className="text-grey-dark ctext-base font-medium cursor-pointer"
+              className="text-grey-dark ctext-base  cursor-pointer"
             >
               Цена со скидкой (сум):
             </label>
@@ -490,7 +508,7 @@ const AddBook = () => {
             <div className="text-grey-dark ctext-base mt-1 font-bold">
               Главное фото (обложка)
             </div>
-            <div className="text-grey-dark ctext-base mt-1 font-medium">
+            <div className="text-grey-dark ctext-base mt-1 ">
               Минимальный размер: 555х750
             </div>
           </div>
@@ -506,7 +524,7 @@ const AddBook = () => {
             <div className="text-grey-dark ctext-base mt-1 font-bold">
               Главное фото (обложка)
             </div>
-            <div className="text-grey-dark ctext-base mt-1 font-medium">
+            <div className="text-grey-dark ctext-base mt-1 ">
               Минимальный размер: 555х750
             </div>
           </div>
@@ -522,7 +540,7 @@ const AddBook = () => {
             <div className="text-grey-dark ctext-base mt-1 font-bold">
               Главное фото (обложка)
             </div>
-            <div className="text-grey-dark ctext-base mt-1 font-medium">
+            <div className="text-grey-dark ctext-base mt-1 ">
               Минимальный размер: 555х750
             </div>
           </div>
@@ -598,7 +616,9 @@ const AddBook = () => {
           </div>
         </div>
         {/* add from list */}
-        <div className="flex items-center text-blue ctext-lg font-medium cursor-pointer my-6">
+        <div 
+          onClick={() => route.push('/add-smillar-books')}
+          className="flex items-center text-blue ctext-lg  cursor-pointer my-6">
           Добавить из списка
           <VscChevronRight className="text-xl" />
         </div>
@@ -606,17 +626,12 @@ const AddBook = () => {
 
       {/* add, cancle */}
       <div className="flex flex-col md:flex-row md:justify-around pb-10">
-        <button className="bg-blue w-full md:w-1/3 py-1 lg:py-2 cursor-pointer rounded-md flex justify-center text-white ctext-lg font-medium">
-          Добавить на сайт
-        </button>
-        <button 
-          onClick={() => setCancle(true)}
-          className="bg-red w-full md:w-1/3 py-1 lg:py-2 mt-4 md:mt-0 cursor-pointer rounded-md flex justify-center text-white ctext-lg font-medium">
-          Отмена
+        <button className="bg-blue w-full md:w-1/3 py-1 lg:py-2 cursor-pointer rounded-md flex justify-center text-white ctext-lg ">
+          Сохранить изменения
         </button>
       </div>
     </div>
   );
 };
 
-export default AddBook;
+export default EditBook;
