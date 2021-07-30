@@ -41,7 +41,7 @@ const EditBook = () => {
         onClick={() => {
           route.push("/orders");
         }}
-        className="inline-flexflex items-center text-blue ctext-lg  cursor-pointer"
+        className="inline-flex items-center text-blue ctext-lg  cursor-pointer"
       >
         <VscChevronLeft className="text-2xl" /> Назад
       </div>

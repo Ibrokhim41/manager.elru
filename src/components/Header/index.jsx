@@ -79,19 +79,19 @@ const Header = () => {
               </div>
             </div>
             <div
-              onClick={() => route.push("/balance")}
+              onClick={() => route.push("/authors")}
               className={`${
-                location.pathname === "/balance" && "header-active"
+                location.pathname === "/authors" && "header-active"
               } px-4 cursor-pointer hover:bg-blue group flex items-center justify-center py-4 flex-grow`}
             >
               <BiUserCircle
                 className={`${
-                  location.pathname === "/balance" ? "text-white" : "text-blue"
+                  location.pathname === "/authors" ? "text-white" : "text-blue"
                 } text-2xl mr-2 group-hover:text-white`}
               />
               <div
                 className={`${
-                  location.pathname === "/balance"
+                  location.pathname === "/authors"
                     ? "text-white"
                     : "text-grey-dark"
                 } ctext-base group-hover:text-white font-bold`}
@@ -224,20 +224,20 @@ const Header = () => {
             <div
               onClick={() => {
                 setShowMenu(false);
-                route.push("/balance");
+                route.push("/authors");
               }}
               className={`${
-                location.pathname === "/balance" && "header-active"
+                location.pathname === "/authors" && "header-active"
               } px-6 cursor-pointer hover:bg-blue group flex items-center py-4 flex-grow`}
             >
               <BiUserCircle
                 className={`${
-                  location.pathname === "/balance" ? "text-white" : "text-blue"
+                  location.pathname === "/authors" ? "text-white" : "text-blue"
                 } text-2xl mr-2 group-hover:text-white`}
               />
               <div
                 className={`${
-                  location.pathname === "/balance"
+                  location.pathname === "/authors"
                     ? "text-white"
                     : "text-grey-dark"
                 } ctext-base group-hover:text-white font-bold`}

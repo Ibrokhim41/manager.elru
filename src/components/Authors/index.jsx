@@ -3,21 +3,21 @@ import { BsTrash } from "react-icons/bs";
 import { BiPencil } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 
-const Categories = () => {
+const Authors = () => {
   const route = useHistory();
 
   const list = [
-    "Ужасы",
-    "Ораторское искусство",
-    "Детективы",
-    "Фантастика",
+    "Джоанна Роулинг",
+    "Сьюзен Коллинз",
+    "Джоанна Роулинг",
+    "Сьюзен Коллинз",
     "Бизнес",
-    "Книги о бирже",
-    "Для детей",
-    "Психология",
-    "Маркетинг",
-    "Медицина",
-    "Менеджмент",
+    "Книги о Сьюзен Коллинз",
+    "Сьюзен Коллинз детей",
+    "Джоанна",
+    "Роулинг Маркетинг",
+    "Медицина Роулинг",
+    "Сьюзен Менеджмент",
   ];
 
   return (
@@ -25,14 +25,14 @@ const Categories = () => {
       <div className="pt-24"></div>
       <div className="flex flex-col md:flex-row">
         <button
-          onClick={() => route.push("/add-category")}
+          onClick={() => route.push("/add-author")}
           className="bg-blue text-white ctext-base  py-1.5 px-8 rounded-md flex items-center justify-center"
         >
-          Добавить категорию <VscAdd className="text-md ml-1" />
+          Добавить автора <VscAdd className="text-md ml-1" />
         </button>
         <div className="flex items-center justify-between md:justify-start ml-4 mt-2 md:mt-0">
           <label htmlFor="category_name" className="text-grey-dark ctext-base ">
-            Поиск категории
+            Поиск автора
           </label>
           <input
             id="category_name"
@@ -70,11 +70,14 @@ const Categories = () => {
                   />
                 </div>
                 <div className="col-span-11 flex justify-between items-center text-grey-dark ctext-sm  border border-grey-border py-1.5 px-2">
-                  <div className="cursor-pointer hover:text-blue" onClick={() => route.push("/books-in-category")}>
+                  <div
+                    className="cursor-pointer hover:text-blue"
+                    // onClick={() => route.push("/books-in-category")}
+                  >
                     {item}
                   </div>
                   <div
-                    onClick={() => route.push("/edit-category")}
+                    onClick={() => route.push("/edit-author")}
                     className="p-1.5 bg-blue rounded-md cursor-pointer text-white text-lg"
                   >
                     <BiPencil />
@@ -89,4 +92,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default Authors;
