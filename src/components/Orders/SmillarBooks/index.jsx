@@ -29,13 +29,13 @@ const SmillarBooks = () => {
 
       {/* actions */}
       <div className="w-full flex flex-col sm:flex-row justify-end xl:w-9/12">
-        <button className="flex items-center mt-2 sm:mt-0 sm:mx-4 bg-green rounded-md text-white ctext-base font-medium py-1 px-4">
+        <button className="flex justify-center items-center mt-2 sm:mt-0 sm:mx-4 bg-green rounded-md text-white ctext-base font-medium py-1 px-4">
           Добавить в категорию
           <MdAdd className="ml-1 text-xl" />
         </button>
         <button
           onClick={() => setShowFilter(true)}
-          className="flex items-center xl:hidden mt-2 sm:mt-0 sm:ml-4 cursor-pointer bg-blue rounded-md text-white ctext-base font-medium py-1 px-4"
+          className="flex justify-center items-center xl:hidden mt-2 sm:mt-0 sm:ml-4 cursor-pointer bg-blue rounded-md text-white ctext-base font-medium py-1 px-4"
         >
           <BiFilterAlt className="mr-1 text-lg" />
           Фильтр

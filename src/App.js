@@ -15,6 +15,16 @@ import SmillarBooks from "components/Orders/SmillarBooks";
 import Authors from "components/Authors";
 import EditAuthor from "components/Authors/EditAuthor";
 import AddAuthor from "components/Authors/AddAuthor";
+import EditBlocks from "components/EditBlocks";
+import Users from "components/Users";
+import MainPageBanners from "components/EditBlocks/MainPageBanners";
+import Selections from "components/EditBlocks/Selections";
+import AddSelection from "components/EditBlocks/Selections/AddSelection";
+import EditSelection from "components/EditBlocks/Selections/EditSection";
+import Tops from "components/EditBlocks/Tops";
+import AddTop from "components/EditBlocks/Tops/AddTop";
+import EditTop from "components/EditBlocks/Tops/EditTop";
+import BookOfMonth from "components/EditBlocks/BookOfMonth";
 
 function App() {
   return (
@@ -36,6 +46,16 @@ function App() {
           <Route path="/authors" component={Authors} />
           <Route path="/add-author" component={AddAuthor} />
           <Route path="/edit-author" component={EditAuthor} />
+          <Route path="/edit-blocks" component={EditBlocks} />
+          <Route path="/main-page-banners" component={MainPageBanners} />
+          <Route path="/selections" component={Selections} />
+          <Route path="/add-selection" component={AddSelection} />
+          <Route path="/edit-selection" component={EditSelection} />
+          <Route path="/tops" component={Tops} />
+          <Route path="/add-top" component={AddTop} />
+          <Route path="/edit-top" component={EditTop} />
+          <Route path="/book-of-month" component={BookOfMonth} />
+          <Route path="/users" component={Users} />
           <Route path="/example" component={Example} />
         </Switch>
       </Router>

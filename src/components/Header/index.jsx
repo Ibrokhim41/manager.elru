@@ -100,19 +100,19 @@ const Header = () => {
               </div>
             </div>
             <div
-              onClick={() => route.push("/managers")}
+              onClick={() => route.push("/edit-blocks")}
               className={`${
-                location.pathname === "/managers" && "header-active"
+                location.pathname === "/edit-blocks" && "header-active"
               } px-4 cursor-pointer hover:bg-blue group flex items-center justify-center py-4 flex-grow`}
             >
               <BiEdit
                 className={`${
-                  location.pathname === "/managers" ? "text-white" : "text-blue"
+                  location.pathname === "/edit-blocks" ? "text-white" : "text-blue"
                 } text-2xl mr-2 group-hover:text-white`}
               />
               <div
                 className={`${
-                  location.pathname === "/managers"
+                  location.pathname === "/edit-blocks"
                     ? "text-white"
                     : "text-grey-dark"
                 } ctext-base group-hover:text-white font-bold`}
@@ -121,19 +121,19 @@ const Header = () => {
               </div>
             </div>
             <div
-              onClick={() => route.push("/managers")}
+              onClick={() => route.push("/users")}
               className={`${
-                location.pathname === "/managers" && "header-active"
+                location.pathname === "/users" && "header-active"
               } px-4 cursor-pointer hover:bg-blue group flex items-center justify-center py-4 flex-grow`}
             >
               <FaUsers
                 className={`${
-                  location.pathname === "/managers" ? "text-white" : "text-blue"
+                  location.pathname === "/users" ? "text-white" : "text-blue"
                 } text-2xl mr-2 group-hover:text-white`}
               />
               <div
                 className={`${
-                  location.pathname === "/managers"
+                  location.pathname === "/users"
                     ? "text-white"
                     : "text-grey-dark"
                 } ctext-base group-hover:text-white font-bold`}
@@ -248,20 +248,20 @@ const Header = () => {
             <div
               onClick={() => {
                 setShowMenu(false);
-                route.push("/managers");
+                route.push("/edit-blocks");
               }}
               className={`${
-                location.pathname === "/managers" && "header-active"
+                location.pathname === "/edit-blocks" && "header-active"
               } px-6 cursor-pointer hover:bg-blue group flex items-center py-4 flex-grow`}
             >
               <BiEdit
                 className={`${
-                  location.pathname === "/managers" ? "text-white" : "text-blue"
+                  location.pathname === "/edit-blocks" ? "text-white" : "text-blue"
                 } text-2xl mr-2 group-hover:text-white`}
               />
               <div
                 className={`${
-                  location.pathname === "/managers"
+                  location.pathname === "/edit-blocks"
                     ? "text-white"
                     : "text-grey-dark"
                 } ctext-base group-hover:text-white font-bold`}
@@ -272,20 +272,20 @@ const Header = () => {
             <div
               onClick={() => {
                 setShowMenu(false);
-                route.push("/managers");
+                route.push("/users");
               }}
               className={`${
-                location.pathname === "/managers" && "header-active"
+                location.pathname === "/users" && "header-active"
               } px-6 cursor-pointer hover:bg-blue group flex items-center py-4 flex-grow`}
             >
               <FaUsers
                 className={`${
-                  location.pathname === "/managers" ? "text-white" : "text-blue"
+                  location.pathname === "/users" ? "text-white" : "text-blue"
                 } text-2xl mr-2 group-hover:text-white`}
               />
               <div
                 className={`${
-                  location.pathname === "/managers"
+                  location.pathname === "/users"
                     ? "text-white"
                     : "text-grey-dark"
                 } ctext-base group-hover:text-white font-bold`}

@@ -20,7 +20,7 @@ const EditCategory = () => {
       {/* title */}
       <div className="text-grey-dark ctext-lg font-medium mt-6 flex flex-col sm:flex-row sm:justify-between">
         Редактирование категории
-        <button className="flex items-center mt-2 sm:mt-0 sm:mx-4 bg-red-dark rounded-md text-white ctext-base font-medium py-1 px-4">
+        <button className="flex justify-center items-center mt-2 sm:mt-0 sm:mx-4 bg-red-dark rounded-md text-white ctext-base font-medium py-1 px-4">
           <BsTrash className="mr-1 text-xl" />
           Удалить
         </button>
