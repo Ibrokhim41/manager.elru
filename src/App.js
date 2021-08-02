@@ -30,6 +30,7 @@ import AddNews from "components/EditBlocks/News/AddNews";
 import EditNews from "components/EditBlocks/News/EditNews";
 import SocialLinks from "components/EditBlocks/SocialLinks";
 import DiscountsPageBanners from "components/EditBlocks/DiscountsPageBanners";
+import Chat from "components/Chat";
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
           <Route path="/add-news" component={AddNews} />
           <Route path="/edit-news" component={EditNews} />
           <Route path="/users" component={Users} />
+          <Route path="/chat" component={Chat} />
           <Route path="/example" component={Example} />
         </Switch>
       </Router>

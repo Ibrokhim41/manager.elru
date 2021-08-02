@@ -2,7 +2,7 @@ import { useState } from "react";
 import ChangePassword from "./ChangePassword";
 
 const Users = () => {
-  const [change, setChange] = useState()
+  const [change, setChange] = useState();
 
   const list = [
     {
@@ -37,7 +37,6 @@ const Users = () => {
 
   return (
     <div className="container mx-auto mb-10 overflow-x-scroll hide-scroll">
-      
       <ChangePassword change={change} setChange={setChange} />
       {/*  */}
       <div className="pt-24"></div>
@@ -71,10 +70,9 @@ const Users = () => {
               <div className="col-span-6 sm:col-span-3 flex justify-end sm:justify-start items-center text-grey-dark ctext-sm  border-b border-grey-border py-4 px-2">
                 {item.link}
               </div>
-              <div 
-              onClick={() => setChange(true)}
-              className="col-span-12 sm:col-span-3 flex justify-start sm:justify-end items-center text-blue ctext-base font-medium underline cursor-pointer border-b border-grey-border hover:text-green-light py-4 px-2 mb-8 sm:mb-0">
-                Изменить пароль
+              <div className="col-span-12 sm:col-span-3 flex justify-start sm:justify-end items-center border-b border-grey-border  py-4 px-2 mb-8 sm:mb-0">
+                <div onClick={() => setChange(true)}
+                className="text-blue ctext-base font-medium underline cursor-pointer hover:text-green-light">Изменить пароль</div>
               </div>
             </>
           );

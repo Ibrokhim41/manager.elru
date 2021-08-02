@@ -1,7 +1,7 @@
 import "./style.css";
 import elru_logo from "../../assets/images/logo_elru.svg";
-import {AiOutlineAppstore} from "react-icons/ai"
-import {FaUsers} from "react-icons/fa"
+import { AiOutlineAppstore } from "react-icons/ai";
+import { FaUsers } from "react-icons/fa";
 import { FiBox } from "react-icons/fi";
 import { BsChatDots } from "react-icons/bs";
 import { BiExit, BiUserCircle, BiEdit } from "react-icons/bi";
@@ -65,7 +65,9 @@ const Header = () => {
             >
               <AiOutlineAppstore
                 className={`${
-                  location.pathname === "/categories" ? "text-white" : "text-blue"
+                  location.pathname === "/categories"
+                    ? "text-white"
+                    : "text-blue"
                 } text-2xl mr-2 group-hover:text-white`}
               />
               <div
@@ -107,7 +109,9 @@ const Header = () => {
             >
               <BiEdit
                 className={`${
-                  location.pathname === "/edit-blocks" ? "text-white" : "text-blue"
+                  location.pathname === "/edit-blocks"
+                    ? "text-white"
+                    : "text-blue"
                 } text-2xl mr-2 group-hover:text-white`}
               />
               <div
@@ -144,7 +148,7 @@ const Header = () => {
           </div>
           <div className="col-span-1 2xl:col-span-2 flex justify-end">
             <div
-              onClick={() => setRemove(true)}
+              onClick={() => route.push("/chat")}
               className="flex items-center h-full text-grey-dark font-bold ctext-base cursor-pointer"
             >
               Чат
@@ -208,7 +212,9 @@ const Header = () => {
             >
               <AiOutlineAppstore
                 className={`${
-                  location.pathname === "/categories" ? "text-white" : "text-blue"
+                  location.pathname === "/categories"
+                    ? "text-white"
+                    : "text-blue"
                 } text-2xl mr-2 group-hover:text-white`}
               />
               <div
@@ -256,7 +262,9 @@ const Header = () => {
             >
               <BiEdit
                 className={`${
-                  location.pathname === "/edit-blocks" ? "text-white" : "text-blue"
+                  location.pathname === "/edit-blocks"
+                    ? "text-white"
+                    : "text-blue"
                 } text-2xl mr-2 group-hover:text-white`}
               />
               <div
@@ -296,7 +304,10 @@ const Header = () => {
           </div>
           <div className="col-span-2 flex flex-col">
             <div
-              onClick={() => setRemove(true)}
+              onClick={() => {
+                setShowMenu(false);
+                route.push("/chat");
+              }}
               className="flex items-center h-full px-6 mt-6 text-grey-dark font-bold ctext-base cursor-pointer"
             >
               Чат

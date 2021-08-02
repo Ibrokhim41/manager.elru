@@ -3,8 +3,8 @@ import { IoMdClose } from "react-icons/io";
 const ChangePassword = ({ change, setChange }) => {
   return (
     <div
-      className={`z-50 absolute top-0 transition-all duration-300 overflow-hidden ${
-        change ? "left-0" : "-left-full"
+      className={`z-50 fixed top-0 left-0 transform transition-all duration-300 overflow-hidden ${
+        change ? "translate-x-0" : "translate-x-full"
       } bg-white w-screen h-screen flex flex-col justify-center items-center`}
     >
       <div className="text-black ctext-xl font-bold mb-8">Изменить пароль</div>
