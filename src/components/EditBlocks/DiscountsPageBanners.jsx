@@ -2,7 +2,7 @@ import { VscChevronLeft } from "react-icons/vsc";
 import { IoMdImages } from "react-icons/io";
 import { useHistory } from "react-router-dom";
 
-const MainPageBanners = () => {
+const DiscountsPageBanners = () => {
   const route = useHistory();
 
   return (
@@ -19,7 +19,7 @@ const MainPageBanners = () => {
 
       {/* title */}
       <div className="text-grey-dark ctext-lg font-medium mt-6 mb-5 flex flex-col sm:flex-row sm:justify-between border-b border-grey-border pb-3">
-        Баннеры главного экрана
+        Баннеры Акции и скидки
       </div>
       {/* banners */}
       <div className="text-black ctext-lg font-bold mb-2">Большие баннеры:</div>
@@ -165,4 +165,4 @@ const MainPageBanners = () => {
   );
 };
 
-export default MainPageBanners;
+export default DiscountsPageBanners;

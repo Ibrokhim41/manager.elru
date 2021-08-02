@@ -25,6 +25,11 @@ import Tops from "components/EditBlocks/Tops";
 import AddTop from "components/EditBlocks/Tops/AddTop";
 import EditTop from "components/EditBlocks/Tops/EditTop";
 import BookOfMonth from "components/EditBlocks/BookOfMonth";
+import News from "components/EditBlocks/News";
+import AddNews from "components/EditBlocks/News/AddNews";
+import EditNews from "components/EditBlocks/News/EditNews";
+import SocialLinks from "components/EditBlocks/SocialLinks";
+import DiscountsPageBanners from "components/EditBlocks/DiscountsPageBanners";
 
 function App() {
   return (
@@ -48,6 +53,7 @@ function App() {
           <Route path="/edit-author" component={EditAuthor} />
           <Route path="/edit-blocks" component={EditBlocks} />
           <Route path="/main-page-banners" component={MainPageBanners} />
+          <Route path="/discounts-banners" component={DiscountsPageBanners} />
           <Route path="/selections" component={Selections} />
           <Route path="/add-selection" component={AddSelection} />
           <Route path="/edit-selection" component={EditSelection} />
@@ -55,6 +61,10 @@ function App() {
           <Route path="/add-top" component={AddTop} />
           <Route path="/edit-top" component={EditTop} />
           <Route path="/book-of-month" component={BookOfMonth} />
+          <Route path="/social-links" component={SocialLinks} />
+          <Route path="/news" component={News} />
+          <Route path="/add-news" component={AddNews} />
+          <Route path="/edit-news" component={EditNews} />
           <Route path="/users" component={Users} />
           <Route path="/example" component={Example} />
         </Switch>

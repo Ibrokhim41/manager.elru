@@ -39,18 +39,24 @@ const EditBlocks = () => {
         Книга месяца
         <MdArrowForward className="text-blue text-lg sm:text-xl ml-2" />
       </div>
-      <div className="w-full text-black ctext-base md:w-9/12 flex justify-between items-center border-t border-b border-grey-border  py-2.5 cursor-pointer hover:text-blue">
+      <div 
+      onClick={() => route.push('/news')}
+      className="w-full text-black ctext-base md:w-9/12 flex justify-between items-center border-t border-b border-grey-border  py-2.5 cursor-pointer hover:text-blue">
         Новости
         <MdArrowForward className="text-blue text-lg sm:text-xl ml-2" />
       </div>
-      <div className="w-full text-black ctext-base md:w-9/12 flex justify-between items-center border-t border-b border-grey-border  py-2.5 cursor-pointer hover:text-blue">
+      <div 
+      onClick={() => route.push('/social-links')}
+      className="w-full text-black ctext-base md:w-9/12 flex justify-between items-center border-t border-b border-grey-border  py-2.5 cursor-pointer hover:text-blue">
         Социальные сети
         <MdArrowForward className="text-blue text-lg sm:text-xl ml-2" />
       </div>
 
       {/*  */}
       <div className="text-black ctext-lg font-bold mt-6 mb-3">Акции и скидки:</div>
-      <div className="w-full text-black ctext-base md:w-9/12 flex justify-between items-center border-t border-b border-grey-border  py-2.5 cursor-pointer hover:text-blue">
+      <div 
+      onClick={() => route.push('/discounts-banners')}
+      className="w-full text-black ctext-base md:w-9/12 flex justify-between items-center border-t border-b border-grey-border  py-2.5 cursor-pointer hover:text-blue">
         Баннеры
         <MdArrowForward className="text-blue text-lg sm:text-xl ml-2" />
       </div>

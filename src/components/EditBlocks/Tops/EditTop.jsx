@@ -12,7 +12,7 @@ const EditTop = () => {
         onClick={() => {
           route.push("/tops");
         }}
-        className="flex items-center text-blue ctext-lg  cursor-pointer"
+        className="inline-flex items-center text-blue ctext-lg  cursor-pointer"
       >
         <VscChevronLeft className="text-2xl" /> Назад
       </div>

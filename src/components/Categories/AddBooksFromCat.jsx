@@ -17,7 +17,7 @@ const AddBooksFromCat = () => {
         onClick={() => {
           route.push("/add-category");
         }}
-        className="flex items-center text-blue ctext-lg  cursor-pointer"
+        className="inline-flex items-center text-blue ctext-lg  cursor-pointer"
       >
         <VscChevronLeft className="text-2xl" /> Назад
       </div>
