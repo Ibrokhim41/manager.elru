@@ -59,7 +59,7 @@ const Chat = () => {
       <div className="bg-gradient-to-r from-grey-bg to-white">
         <div className="2xl:container mx-auto grid grid-cols-12">
           {/* left */}
-          <div className={`transform transition-all ${showMenu ? 'translate-x-0' : '-translate-x-full 2xl:translate-x-0'} absolute 2xl:static left-0 flex w-11/12 sm:w-1/2 md:w-1/3 2xl:w-full 2xl:col-span-3 bg-grey-bg border-r border-grey-border`}>
+          <div className={`z-40 transform transition-all ${showMenu ? 'translate-x-0' : '-translate-x-full 2xl:translate-x-0'} absolute 2xl:static left-0 flex w-11/12 sm:w-1/2 md:w-1/3 2xl:w-full 2xl:col-span-3 bg-grey-bg border-r border-grey-border`}>
             <div className="overflow-scroll h-screen w-full pb-10">
               {users.map((name, i) => {
                 return (
