@@ -168,7 +168,7 @@ const Header = () => {
           onClick={() => setShowMenu(!showMenu)}
           className="xl:hidden cursor-pointer"
         >
-          <Hamburger size={24} color={"#3E4549"} toggled={showMenu} />
+          <Hamburger size={24} color={"#01BEDE"} toggled={showMenu} />
         </div>
         {/* mob-menu */}
         <div
