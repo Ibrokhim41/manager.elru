@@ -64,7 +64,10 @@ const Chat = () => {
               {users.map((name, i) => {
                 return (
                   <div
-                    onClick={() => setActiveClass(i)}
+                    onClick={() => {
+                      setActiveClass(i)
+                      setShowMenu(false)
+                    }}
                     key={i}
                     className={`${
                       activeClass === i ? "bg-blue text-white" : ""
