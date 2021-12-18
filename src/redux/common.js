@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    api_url: "http://127.0.0.1:8000/uz",
     login: true,
     filter: false,
 };

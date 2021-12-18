@@ -1,9 +1,52 @@
 import { VscChevronLeft } from "react-icons/vsc";
 import { IoMdImages } from "react-icons/io";
 import { useHistory } from "react-router-dom";
+import { axiosInstance } from '../../../axios';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const EditNews = () => {
   const route = useHistory();
+  const params = useParams()
+  const [newsDetail, setNewsDetail] = useState({})
+
+  const imageUpload = (e, o) => {
+    const file = e.target.files[0]
+    let formData = new FormData()
+    formData.append('image', file, file.name)
+    // setNewsDetail({...newsDetail, image: formData})
+    o === 0 ? setNewsDetail({ ...newsDetail, image: formData })
+      : o === 1 ? setNewsDetail({ ...newsDetail, image1: formData })
+        : setNewsDetail({ ...newsDetail, image2: formData })
+  }
+
+  const postCreateNews = () => {
+    const patchData = { ...newsDetail }
+    patchData.image.includes('http') && delete patchData.image
+    patchData.image1.includes('http') && delete patchData.image1
+    patchData.image2.includes('http') && delete patchData.image2
+    delete patchData.id
+    delete patchData.created_at
+    console.log(patchData);
+    axiosInstance.patch(`/news/update/${params.id}/`, patchData)
+      .then(res => {
+        route.push("/news")
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  useEffect(() => {
+    axiosInstance.get(`/news/detail/${params.id}`)
+      .then(res => {
+        setNewsDetail(res.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }, [params.id])
+
 
   return (
     <div className="container mx-auto mb-10 overflow-x-scroll hide-scroll">
@@ -17,62 +60,97 @@ const EditNews = () => {
         <VscChevronLeft className="text-2xl" /> Назад
       </div>
 
+      {/* ru */}
       {/* title */}
       <div className="text-grey-dark ctext-lg font-medium mt-6 mb-5 flex flex-col sm:flex-row sm:justify-between">
-        Редактировать статью
+        Добавить статью
       </div>
 
       {/*  title */}
       <div className="flex flex-col md:justify-start mt-4">
-        <label htmlFor="category_name" className="text-grey-dark ctext-base ">
-          Заголовок 1
+        <label htmlFor="title_ru" className="text-grey-dark ctext-base ">
+          Заголовок <span className={`text-blue text-sm`}>ru</span>
         </label>
         <input
-          id="category_name"
+          onChange={(e) => setNewsDetail({ ...newsDetail, title_ru: e.target.value })}
+          placeholder={`${newsDetail.title_ru ? newsDetail.title_ru : 'Введите заголовок... '}`}
+          id="title_ru"
           type="text"
-          placeholder="Введите заголовок..."
           className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
         />
       </div>
 
       {/*  text */}
       <div className="flex flex-col md:justify-start mt-4">
-        <label htmlFor="category_name" className="text-grey-dark ctext-base ">
-          Абзац 1
+        <label htmlFor="contnet_ru" className="text-grey-dark ctext-base ">
+          Текст <span className={`text-blue text-sm`}>ru</span>
         </label>
         <textarea
-          id="category_name"
+          onChange={(e) => setNewsDetail({ ...newsDetail, content_ru: e.target.value })}
+          placeholder={`${newsDetail.content_ru ? newsDetail.content_ru : "Введите текст..."}`}
+          id="contnet_ru"
           rows="4"
           type="text"
-          placeholder="Введите заголовок..."
           className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
         />
       </div>
 
-      {/* 2 */}
+      {/* uz */}
       {/*  title */}
       <div className="flex flex-col md:justify-start mt-6">
-        <label htmlFor="category_name" className="text-grey-dark ctext-base ">
-          Заголовок 2
+        <label htmlFor="title_uz" className="text-grey-dark ctext-base ">
+          Sarlavha <span className={`text-blue text-sm`}>uz</span>
         </label>
         <input
-          id="category_name"
+          onChange={(e) => setNewsDetail({ ...newsDetail, title_uz: e.target.value })}
+          placeholder={`${newsDetail.title_uz ? newsDetail.title_uz : 'Sarlavha kiriting... '}`}
+          id="title_uz"
           type="text"
-          placeholder="Введите заголовок..."
           className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
         />
       </div>
 
       {/*  text */}
       <div className="flex flex-col md:justify-start mt-4">
-        <label htmlFor="category_name" className="text-grey-dark ctext-base ">
-          Абзац 2
+        <label htmlFor="content_uz" className="text-grey-dark ctext-base ">
+          Matn <span className={`text-blue text-sm`}>uz</span>
         </label>
         <textarea
-          id="category_name"
+          onChange={(e) => setNewsDetail({ ...newsDetail, content_uz: e.target.value })}
+          placeholder={`${newsDetail.content_uz ? newsDetail.content_uz : 'Matn kiriting... '}`}
+          id="content_uz"
           rows="4"
           type="text"
-          placeholder="Введите заголовок..."
+          className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
+        />
+      </div>
+
+      {/* en */}
+      {/*  title */}
+      <div className="flex flex-col md:justify-start mt-6">
+        <label htmlFor="title_en" className="text-grey-dark ctext-base ">
+          Title <span className={`text-blue text-sm`}>en</span>
+        </label>
+        <input
+          onChange={(e) => setNewsDetail({ ...newsDetail, title_en: e.target.value })}
+          placeholder={`${newsDetail.title_en ? newsDetail.title_en : 'Enter a title...'}`}
+          id="title_en"
+          type="text"
+          className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
+        />
+      </div>
+
+      {/*  text */}
+      <div className="flex flex-col md:justify-start mt-4">
+        <label htmlFor="content_en" className="text-grey-dark ctext-base ">
+          Text <span className={`text-blue text-sm`}>en</span>
+        </label>
+        <textarea
+          onChange={(e) => setNewsDetail({ ...newsDetail, content_en: e.target.value })}
+          placeholder={`${newsDetail.content_en ? newsDetail.content_en : 'Enter a text...'}`}
+          id="content_en"
+          rows="4"
+          type="text"
           className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
         />
       </div>
@@ -81,12 +159,16 @@ const EditNews = () => {
       <div className="flex flex-wrap">
         <div className="w-64 mt-4">
           <label htmlFor="book_image3">
-            <div className="cursor-pointer border border-grey-border bg-white rounded-md w-60 h-28 flex flex-col justify-center items-center">
-              <IoMdImages className="text-4xl text-blue" />
-              <div className="text-grey-dark ctext-base">Загрузить фото</div>
+            <div
+              style={{ backgroundImage: `url(${newsDetail.image})` }}
+              className={`bg-cover bg-center cursor-pointer border border-grey-border bg-white rounded-md w-60 h-28 flex flex-col justify-center items-center`}>
+              {newsDetail.image === null && <IoMdImages className="text-4xl text-blue" />}
+              <div className={`${newsDetail.image !== null && 'hidden'} text-grey-dark ctext-base`}>Загрузить фото</div>
             </div>
           </label>
-          <input type="file" id="book_image3" className="hidden" />
+          <input
+            onChange={e => imageUpload(e, 0)}
+            type="file" id="book_image3" className="hidden" />
           <div className="text-grey-dark ctext-base mt-1 font-bold">
             Фото обложки стати
           </div>
@@ -96,13 +178,18 @@ const EditNews = () => {
         </div>
         {/* 2 */}
         <div className="w-64 mt-4">
-          <label htmlFor="book_image3">
-            <div className="cursor-pointer border border-grey-border bg-white rounded-md w-60 h-28 flex flex-col justify-center items-center">
-              <IoMdImages className="text-4xl text-blue" />
-              <div className="text-grey-dark ctext-base">Загрузить фото</div>
+          <label htmlFor="book_image4">
+            <div
+              style={{ backgroundImage: `url(${newsDetail.image1})` }}
+              className={`bg-cover bg-center cursor-pointer border border-grey-border bg-white rounded-md w-60 h-28 flex flex-col justify-center items-center`}>
+              {newsDetail.image1 === null && <IoMdImages className="text-4xl text-blue" />}
+              <div className={`${newsDetail.image1 !== null && 'hidden'} text-grey-dark ctext-base`}>Загрузить фото</div>
             </div>
           </label>
-          <input type="file" id="book_image3" className="hidden" />
+          <input
+            onChange={e => imageUpload(e, 1)}
+            // onChange={(e) => setNewsDetail({ ...newsDetail, image1: e.target.files[0] })}
+            type="file" id="book_image4" className="hidden" />
           <div className="text-grey-dark ctext-base mt-1 font-bold">
             Первое фото статьи
           </div>
@@ -112,13 +199,18 @@ const EditNews = () => {
         </div>
         {/* 3 */}
         <div className="w-64 mt-4">
-          <label htmlFor="book_image3">
-            <div className="cursor-pointer border border-grey-border bg-white rounded-md w-60 h-28 flex flex-col justify-center items-center">
-              <IoMdImages className="text-4xl text-blue" />
-              <div className="text-grey-dark ctext-base">Загрузить фото</div>
+          <label htmlFor="book_image5">
+            <div
+              style={{ backgroundImage: `url(${newsDetail.image2})` }}
+              className={`bg-cover bg-center cursor-pointer border border-grey-border bg-white rounded-md w-60 h-28 flex flex-col justify-center items-center`}>
+              {newsDetail.image2 === null && <IoMdImages className="text-4xl text-blue" />}
+              <div className={`${newsDetail.image2 !== null && 'hidden'} text-grey-dark ctext-base`}>Загрузить фото</div>
             </div>
           </label>
-          <input type="file" id="book_image3" className="hidden" />
+          <input
+            onChange={e => imageUpload(e, 2)}
+            // onChange={(e) => setNewsDetail({ ...newsDetail, image2: e.target.files[0] })}
+            type="file" id="book_image5" className="hidden" />
           <div className="text-grey-dark ctext-base mt-1 font-bold">
             Второе фото статьи
           </div>
@@ -129,7 +221,9 @@ const EditNews = () => {
       </div>
 
       {/*  */}
-      <button className="text-white ctext-xs w-full md:w-9/12 bg-blue border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-8">
+      <button
+        onClick={postCreateNews}
+        className="text-white ctext-xs w-full md:w-9/12 bg-blue border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-8">
         Сохранить
       </button>
     </div>
