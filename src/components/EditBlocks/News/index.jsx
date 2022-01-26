@@ -8,6 +8,7 @@ import moment from "moment";
 
 const News = () => {
   const route = useHistory();
+  // eslint-disable-next-line
   const [list, setList] = useState([])
   const [ids, setIds] = useState([])
 

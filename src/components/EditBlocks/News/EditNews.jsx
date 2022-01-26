@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 
 const EditNews = () => {
   const route = useHistory();
+  // eslint-disable-next-line
   const params = useParams()
   const [newsDetail, setNewsDetail] = useState({})
 

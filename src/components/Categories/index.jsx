@@ -31,6 +31,7 @@ const Categories = observer(() => {
     } else {
       setCategories(data.categories)
     }
+    // eslint-disable-next-line
   }, [data.categories, data.searched_categories])
 
 

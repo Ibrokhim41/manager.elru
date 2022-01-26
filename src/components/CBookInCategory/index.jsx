@@ -12,10 +12,12 @@ const BookInCategory = observer(() => {
     books.fetchBooks();
     setSelected(categories.booksId)
     books.data.forEach((book) => setAllId(allId.concat(book.id)))
+    // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
     categories.addBooksId(selected)
+    // eslint-disable-next-line
   }, [selected, books.data])
 
 

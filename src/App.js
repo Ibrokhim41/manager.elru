@@ -36,11 +36,14 @@ import { observer } from "mobx-react-lite";
 import data from "store/data";
 import books from "store/books";
 
+
 const App = observer(() => {
+    // eslint-disable-next-line
     useEffect(() => {}, [data.loged]);
 
     useEffect(() => {
         data.refreshToken();
+        // eslint-disable-next-line
     }, [data.refresh, books.refresh]);
 
     return (
@@ -78,7 +81,10 @@ const App = observer(() => {
                             />
                             <Route path="/authors" component={Authors} />
                             <Route path="/add-author" component={AddAuthor} />
-                            <Route path="/edit-author/:id" component={EditAuthor} />
+                            <Route
+                                path="/edit-author/:id"
+                                component={EditAuthor}
+                            />
                             <Route path="/edit-blocks" component={EditBlocks} />
                             <Route
                                 path="/main-page-banners"

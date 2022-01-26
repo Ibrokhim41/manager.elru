@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from 'react';
 
 const Sidebar = () => {
+  // eslint-disable-next-line
   const [filter, setFilter] = useState(false);
 
   const route = useHistory()
