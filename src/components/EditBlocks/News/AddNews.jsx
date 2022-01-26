@@ -1,7 +1,6 @@
 import { VscChevronLeft } from "react-icons/vsc";
 import { IoMdImages } from "react-icons/io";
 import { useHistory } from "react-router-dom";
-import { axiosInstance } from "../../../axios";
 import { useState } from 'react';
 import { React } from 'react';
 
@@ -11,17 +10,6 @@ const AddNews = () => {
   const [data, setData] = useState({})
 
 
-
-  const onSubmit = () => {
-    axiosInstance.post(`/news/create/`, data)
-      .then(() => {
-        route.push("/news")
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-    console.log(data);
-  }
 
   return (
     <div className="container mx-auto mb-10 overflow-x-scroll hide-scroll">
@@ -211,7 +199,6 @@ const AddNews = () => {
 
       {/*  */}
       <button
-        onClick={onSubmit}
         // type="submit"
         className="text-white ctext-xs w-full md:w-9/12 bg-blue border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-8">
         Сохранить

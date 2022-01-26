@@ -5,15 +5,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import { IoMdClose } from "react-icons/io";
 import { BsPlus } from "react-icons/bs";
 import { BiEraser } from "react-icons/bi";
-import { useDispatch, useSelector } from "react-redux";
-import { setFilter } from "../../redux/common";
 import { useWindowDimensions } from "../../hooks/ScreenWidth";
 import { useHistory } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
+import { useState } from 'react';
 
 const Sidebar = () => {
-  const filter = useSelector((state) => state.common.filter);
-  const dispatch = useDispatch();
+  const [filter, setFilter] = useState(false);
 
   const route = useHistory()
 
@@ -27,7 +25,6 @@ const Sidebar = () => {
       } overflow-y-scroll hide-scroll transition-all pt-20 sm:w-1/2 lg:w-2/6 xl:w-3/12 border-l border-grey-border shadow-sm h-screen bg-white`}
     >
       <IoMdClose
-        onClick={() => dispatch(setFilter(false))}
         className="xl:hidden text-2xl cursor-pointer ml-auto mr-4"
       />
       <div className="py-6 px-4">

@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import BookInCategory from "components/CBookInCategory";
 import CategorySidebar from "./CategorySidebar";
 import { useState } from "react";
+import categories from "store/categories";
 
 const AddBooksFromCat = () => {
   const route = useHistory();
@@ -15,6 +16,7 @@ const AddBooksFromCat = () => {
       <div className="pt-24"></div>
       <div
         onClick={() => {
+          categories.addBooksId([])
           route.push("/add-category");
         }}
         className="inline-flex items-center text-blue ctext-lg  cursor-pointer"
@@ -23,13 +25,18 @@ const AddBooksFromCat = () => {
       </div>
 
       {/* title */}
-      <div className="text-grey-dark ctext-lg font-medium mt-6">
+      <div 
+        className="text-grey-dark ctext-lg font-medium mt-6">
         Добавить книги в категорию
       </div>
 
       {/* actions */}
       <div className="w-full flex flex-col sm:flex-row justify-end xl:w-9/12">
-        <button className="flex justify-center items-center mt-2 sm:mt-0 sm:mx-4 bg-green rounded-md text-white ctext-base font-medium py-1 px-4">
+        <button 
+          onClick={() => {
+            route.push("/add-category");
+          }}
+          className="flex justify-center items-center mt-2 sm:mt-0 sm:mx-4 bg-green rounded-md text-white ctext-base font-medium py-1 px-4">
           Добавить в категорию
           <MdAdd className="ml-1 text-xl" />
         </button>

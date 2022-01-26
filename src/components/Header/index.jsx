@@ -6,14 +6,13 @@ import { FiBox } from "react-icons/fi";
 import { BsChatDots } from "react-icons/bs";
 import { BiExit, BiUserCircle, BiEdit } from "react-icons/bi";
 import { Squash as Hamburger } from "hamburger-react";
-import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import Exit from "components/Modals/Exit";
 import Delete from "components/Modals/Delete";
 
+
 const Header = () => {
-  const login = useSelector((state) => state.common.login);
   const [showMenu, setShowMenu] = useState(false);
 
   const [exit, setExit] = useState();
@@ -24,9 +23,8 @@ const Header = () => {
 
   return (
     <div
-      className={`fixed top-0 z-40 ${
-        login ? "block" : "hidden"
-      } shadow-md w-full container-full bg-white`}
+      className={`fixed top-0 z-40 ${true ? "block" : "hidden"
+        } shadow-md w-full container-full bg-white`}
     >
       <div className="container mx-auto flex justify-between items-center xl:grid grid-cols-12">
         {/* logo */}
@@ -38,109 +36,94 @@ const Header = () => {
           <div className="col-span-6 2xl:col-span-5 flex">
             <div
               onClick={() => route.push("/orders")}
-              className={`${
-                location.pathname === "/orders" && "bg-blue"
-              } px-4 cursor-pointer hover:bg-blue group flex items-center justify-center py-4 flex-grow`}
+              className={`${location.pathname === "/orders" && "bg-blue"
+                } px-4 cursor-pointer hover:bg-blue group flex items-center justify-center py-4 flex-grow`}
             >
               <FiBox
-                className={`${
-                  location.pathname === "/orders" ? "text-white" : "text-blue"
-                } text-2xl mr-2 group-hover:text-white`}
+                className={`${location.pathname === "/orders" ? "text-white" : "text-blue"
+                  } text-2xl mr-2 group-hover:text-white`}
               />
               <div
-                className={`${
-                  location.pathname === "/orders"
+                className={`${location.pathname === "/orders"
                     ? "text-white"
                     : "text-grey-dark"
-                }  ctext-base group-hover:text-white font-bold`}
+                  }  ctext-base group-hover:text-white font-bold`}
               >
                 Все товары
               </div>
             </div>
             <div
               onClick={() => route.push("/categories")}
-              className={`${
-                location.pathname === "/categories" && "header-active"
-              } px-4 cursor-pointer hover:bg-blue group flex items-center justify-center py-4 flex-grow`}
+              className={`${location.pathname === "/categories" && "header-active"
+                } px-4 cursor-pointer hover:bg-blue group flex items-center justify-center py-4 flex-grow`}
             >
               <AiOutlineAppstore
-                className={`${
-                  location.pathname === "/categories"
+                className={`${location.pathname === "/categories"
                     ? "text-white"
                     : "text-blue"
-                } text-2xl mr-2 group-hover:text-white`}
+                  } text-2xl mr-2 group-hover:text-white`}
               />
               <div
-                className={`${
-                  location.pathname === "/categories"
+                className={`${location.pathname === "/categories"
                     ? "text-white"
                     : "text-grey-dark"
-                } ctext-base group-hover:text-white font-bold`}
+                  } ctext-base group-hover:text-white font-bold`}
               >
                 Категории
               </div>
             </div>
             <div
               onClick={() => route.push("/authors")}
-              className={`${
-                location.pathname === "/authors" && "header-active"
-              } px-4 cursor-pointer hover:bg-blue group flex items-center justify-center py-4 flex-grow`}
+              className={`${location.pathname === "/authors" && "header-active"
+                } px-4 cursor-pointer hover:bg-blue group flex items-center justify-center py-4 flex-grow`}
             >
               <BiUserCircle
-                className={`${
-                  location.pathname === "/authors" ? "text-white" : "text-blue"
-                } text-2xl mr-2 group-hover:text-white`}
+                className={`${location.pathname === "/authors" ? "text-white" : "text-blue"
+                  } text-2xl mr-2 group-hover:text-white`}
               />
               <div
-                className={`${
-                  location.pathname === "/authors"
+                className={`${location.pathname === "/authors"
                     ? "text-white"
                     : "text-grey-dark"
-                } ctext-base group-hover:text-white font-bold`}
+                  } ctext-base group-hover:text-white font-bold`}
               >
                 Авторы
               </div>
             </div>
             <div
               onClick={() => route.push("/edit-blocks")}
-              className={`${
-                location.pathname === "/edit-blocks" && "header-active"
-              } px-4 cursor-pointer hover:bg-blue group flex items-center justify-center py-4 flex-grow`}
+              className={`${location.pathname === "/edit-blocks" && "header-active"
+                } px-4 cursor-pointer hover:bg-blue group flex items-center justify-center py-4 flex-grow`}
             >
               <BiEdit
-                className={`${
-                  location.pathname === "/edit-blocks"
+                className={`${location.pathname === "/edit-blocks"
                     ? "text-white"
                     : "text-blue"
-                } text-2xl mr-2 group-hover:text-white`}
+                  } text-2xl mr-2 group-hover:text-white`}
               />
               <div
-                className={`${
-                  location.pathname === "/edit-blocks"
+                className={`${location.pathname === "/edit-blocks"
                     ? "text-white"
                     : "text-grey-dark"
-                } ctext-base group-hover:text-white font-bold`}
+                  } ctext-base group-hover:text-white font-bold`}
               >
                 Редактирование блоков
               </div>
             </div>
             <div
               onClick={() => route.push("/users")}
-              className={`${
-                location.pathname === "/users" && "header-active"
-              } px-4 cursor-pointer hover:bg-blue group flex items-center justify-center py-4 flex-grow`}
+              className={`${location.pathname === "/users" && "header-active"
+                } px-4 cursor-pointer hover:bg-blue group flex items-center justify-center py-4 flex-grow`}
             >
               <FaUsers
-                className={`${
-                  location.pathname === "/users" ? "text-white" : "text-blue"
-                } text-2xl mr-2 group-hover:text-white`}
+                className={`${location.pathname === "/users" ? "text-white" : "text-blue"
+                  } text-2xl mr-2 group-hover:text-white`}
               />
               <div
-                className={`${
-                  location.pathname === "/users"
+                className={`${location.pathname === "/users"
                     ? "text-white"
                     : "text-grey-dark"
-                } ctext-base group-hover:text-white font-bold`}
+                  } ctext-base group-hover:text-white font-bold`}
               >
                 Пользователи
               </div>
@@ -172,9 +155,8 @@ const Header = () => {
         </div>
         {/* mob-menu */}
         <div
-          className={`fixed top-0 ${
-            showMenu ? "left-0" : "-left-full"
-          } transition-all bg-white h-screen z-40 pt-14 shadow-xl`}
+          className={`fixed top-0 ${showMenu ? "left-0" : "-left-full"
+            } transition-all bg-white h-screen z-40 pt-14 shadow-xl`}
         >
           <div className="flex flex-col justify-around">
             <div
@@ -182,21 +164,18 @@ const Header = () => {
                 setShowMenu(false);
                 route.push("/orders");
               }}
-              className={`${
-                location.pathname === "/orders" && "bg-blue"
-              } px-6 cursor-pointer hover:bg-blue group flex items-center py-4 flex-grow`}
+              className={`${location.pathname === "/orders" && "bg-blue"
+                } px-6 cursor-pointer hover:bg-blue group flex items-center py-4 flex-grow`}
             >
               <FiBox
-                className={`${
-                  location.pathname === "/orders" ? "text-white" : "text-blue"
-                } text-2xl mr-2 group-hover:text-white`}
+                className={`${location.pathname === "/orders" ? "text-white" : "text-blue"
+                  } text-2xl mr-2 group-hover:text-white`}
               />
               <div
-                className={`${
-                  location.pathname === "/orders"
+                className={`${location.pathname === "/orders"
                     ? "text-white"
                     : "text-grey-dark"
-                }  ctext-base group-hover:text-white font-bold`}
+                  }  ctext-base group-hover:text-white font-bold`}
               >
                 Все товары
               </div>
@@ -206,23 +185,20 @@ const Header = () => {
                 setShowMenu(false);
                 route.push("/categories");
               }}
-              className={`${
-                location.pathname === "/categories" && "header-active"
-              } px-6 cursor-pointer hover:bg-blue group flex items-center py-4 flex-grow`}
+              className={`${location.pathname === "/categories" && "header-active"
+                } px-6 cursor-pointer hover:bg-blue group flex items-center py-4 flex-grow`}
             >
               <AiOutlineAppstore
-                className={`${
-                  location.pathname === "/categories"
+                className={`${location.pathname === "/categories"
                     ? "text-white"
                     : "text-blue"
-                } text-2xl mr-2 group-hover:text-white`}
+                  } text-2xl mr-2 group-hover:text-white`}
               />
               <div
-                className={`${
-                  location.pathname === "/categories"
+                className={`${location.pathname === "/categories"
                     ? "text-white"
                     : "text-grey-dark"
-                } ctext-base group-hover:text-white font-bold`}
+                  } ctext-base group-hover:text-white font-bold`}
               >
                 Категории
               </div>
@@ -232,21 +208,18 @@ const Header = () => {
                 setShowMenu(false);
                 route.push("/authors");
               }}
-              className={`${
-                location.pathname === "/authors" && "header-active"
-              } px-6 cursor-pointer hover:bg-blue group flex items-center py-4 flex-grow`}
+              className={`${location.pathname === "/authors" && "header-active"
+                } px-6 cursor-pointer hover:bg-blue group flex items-center py-4 flex-grow`}
             >
               <BiUserCircle
-                className={`${
-                  location.pathname === "/authors" ? "text-white" : "text-blue"
-                } text-2xl mr-2 group-hover:text-white`}
+                className={`${location.pathname === "/authors" ? "text-white" : "text-blue"
+                  } text-2xl mr-2 group-hover:text-white`}
               />
               <div
-                className={`${
-                  location.pathname === "/authors"
+                className={`${location.pathname === "/authors"
                     ? "text-white"
                     : "text-grey-dark"
-                } ctext-base group-hover:text-white font-bold`}
+                  } ctext-base group-hover:text-white font-bold`}
               >
                 Авторы
               </div>
@@ -256,23 +229,20 @@ const Header = () => {
                 setShowMenu(false);
                 route.push("/edit-blocks");
               }}
-              className={`${
-                location.pathname === "/edit-blocks" && "header-active"
-              } px-6 cursor-pointer hover:bg-blue group flex items-center py-4 flex-grow`}
+              className={`${location.pathname === "/edit-blocks" && "header-active"
+                } px-6 cursor-pointer hover:bg-blue group flex items-center py-4 flex-grow`}
             >
               <BiEdit
-                className={`${
-                  location.pathname === "/edit-blocks"
+                className={`${location.pathname === "/edit-blocks"
                     ? "text-white"
                     : "text-blue"
-                } text-2xl mr-2 group-hover:text-white`}
+                  } text-2xl mr-2 group-hover:text-white`}
               />
               <div
-                className={`${
-                  location.pathname === "/edit-blocks"
+                className={`${location.pathname === "/edit-blocks"
                     ? "text-white"
                     : "text-grey-dark"
-                } ctext-base group-hover:text-white font-bold`}
+                  } ctext-base group-hover:text-white font-bold`}
               >
                 Редактирование блоков
               </div>
@@ -282,21 +252,18 @@ const Header = () => {
                 setShowMenu(false);
                 route.push("/users");
               }}
-              className={`${
-                location.pathname === "/users" && "header-active"
-              } px-6 cursor-pointer hover:bg-blue group flex items-center py-4 flex-grow`}
+              className={`${location.pathname === "/users" && "header-active"
+                } px-6 cursor-pointer hover:bg-blue group flex items-center py-4 flex-grow`}
             >
               <FaUsers
-                className={`${
-                  location.pathname === "/users" ? "text-white" : "text-blue"
-                } text-2xl mr-2 group-hover:text-white`}
+                className={`${location.pathname === "/users" ? "text-white" : "text-blue"
+                  } text-2xl mr-2 group-hover:text-white`}
               />
               <div
-                className={`${
-                  location.pathname === "/users"
+                className={`${location.pathname === "/users"
                     ? "text-white"
                     : "text-grey-dark"
-                } ctext-base group-hover:text-white font-bold`}
+                  } ctext-base group-hover:text-white font-bold`}
               >
                 Пользователи
               </div>

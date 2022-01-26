@@ -1,11 +1,32 @@
-import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useState } from 'react';
+import axios from 'axios';
 import Logo from "../../assets/images/logo_elru.svg";
-import { setLogin } from "../../redux/common";
+import { api_url } from '../../store/api_ulr';
+import data from '../../store/data'
 
 const Login = () => {
   const route = useHistory();
-  const dispatch = useDispatch();
+
+  const [loginPassword, setLoginPassword] = useState({
+    username: '',
+    password: ''
+  })
+  const [err, setErr] = useState(false)
+  const signIn = () => {
+    axios.post(`${api_url}/api/token/`, loginPassword)
+      .then(data => {
+        sessionStorage.setItem('token', data.data.access)
+        sessionStorage.setItem('refresh_token', data.data.access)
+      })
+      .then(() => {
+        route.push("/orders");
+        data.setLoged()
+      })
+      .catch(err => {
+        setErr(true)
+      })
+  }
 
 
   return (
@@ -20,9 +41,10 @@ const Login = () => {
             Логин<span className="text-red">*</span>
           </div>
           <input
+            onChange={(e) => setLoginPassword({ ...loginPassword, username: e.target.value })}
             type="text"
             placeholder="Введите логин"
-            className="border border-grey-border rounded-md p-2.5 md:p-4 focus:outline-none focus:border-blue w-full text-grey-dark text-base font-medium mt-2"
+            className={`border ${err ? 'border-red' : 'border-grey-border'} rounded-md p-2.5 md:p-4 focus:outline-none focus:border-blue w-full text-grey-dark text-base font-medium mt-2`}
           />
         </div>
         <div className="col-span-12 md:col-span-6">
@@ -30,17 +52,15 @@ const Login = () => {
             Пароль<span className="text-red">*</span>
           </div>
           <input
+            onChange={(e) => setLoginPassword({ ...loginPassword, password: e.target.value })}
             type="password"
             placeholder="Введите пароль"
-            className="border border-grey-border rounded-md p-2.5 md:p-4 focus:outline-none focus:border-blue w-full text-grey-dark text-base font-medium mt-2"
+            className={`border ${err ? 'border-red' : 'border-grey-border'} rounded-md p-2.5 md:p-4 focus:outline-none focus:border-blue w-full text-grey-dark text-base font-medium mt-2`}
           />
         </div>
       </div>
       <button
-        onClick={() => {
-            dispatch(setLogin(true))
-            route.push("/orders");
-        }}
+        onClick={signIn}
         className="bg-blue rounded-md text-white ctetx-base font-bold py-4 w-11/12 sm:w-2/3 lg:w-2/4 mt-10"
       >
         Войти

@@ -4,7 +4,6 @@ import { BiPencil } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 // import axios from "axios";
-import {axiosInstance} from "../../../axios"
 import moment from "moment";
 
 const News = () => {
@@ -12,30 +11,10 @@ const News = () => {
   const [list, setList] = useState([])
   const [ids, setIds] = useState([])
 
-  const getNews = () => {
-    axiosInstance.get(`/news/`)
-      .then(res => {
-        setList(res.data)
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
+  
 
   useEffect(() => {
-    getNews()
   }, [])
-
-  const deleteNews = () => {
-    if (ids.length) {
-      ids.forEach((item) => {
-        axiosInstance.delete(`/news/delete/${item}/`)
-          .then(() => getNews())
-          .then(() => setIds([]))
-      })
-    }
-
-  }
 
 
   return (
@@ -64,7 +43,6 @@ const News = () => {
             Добавить статью <VscAdd className="text-md ml-1" />
           </button>
           <button 
-            onClick={deleteNews}
             className="flex items-center justify-center mt-2 sm:mt-0 bg-red-dark rounded-md text-white ctext-base font-medium py-1 px-4">
             <BsTrash className="mr-1 text-xl" />
             Удалить

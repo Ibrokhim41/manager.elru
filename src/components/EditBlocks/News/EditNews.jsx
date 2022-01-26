@@ -1,7 +1,6 @@
 import { VscChevronLeft } from "react-icons/vsc";
 import { IoMdImages } from "react-icons/io";
 import { useHistory } from "react-router-dom";
-import { axiosInstance } from '../../../axios';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -19,33 +18,11 @@ const EditNews = () => {
       : o === 1 ? setNewsDetail({ ...newsDetail, image1: formData })
         : setNewsDetail({ ...newsDetail, image2: formData })
   }
-
-  const postCreateNews = () => {
-    const patchData = { ...newsDetail }
-    patchData.image.includes('http') && delete patchData.image
-    patchData.image1.includes('http') && delete patchData.image1
-    patchData.image2.includes('http') && delete patchData.image2
-    delete patchData.id
-    delete patchData.created_at
-    console.log(patchData);
-    axiosInstance.patch(`/news/update/${params.id}/`, patchData)
-      .then(res => {
-        route.push("/news")
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
+   
 
   useEffect(() => {
-    axiosInstance.get(`/news/detail/${params.id}`)
-      .then(res => {
-        setNewsDetail(res.data)
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }, [params.id])
+    
+  }, [])
 
 
   return (
@@ -222,7 +199,6 @@ const EditNews = () => {
 
       {/*  */}
       <button
-        onClick={postCreateNews}
         className="text-white ctext-xs w-full md:w-9/12 bg-blue border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-8">
         Сохранить
       </button>

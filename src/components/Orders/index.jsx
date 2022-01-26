@@ -5,24 +5,21 @@ import { BsTrash } from "react-icons/bs";
 import { MdContentCopy, MdBlock } from "react-icons/md";
 // import { BiBuildings } from "react-icons/bi";
 import Sidebar from "./Sidebar";
-import JsonData from "../../MOCK_DATA.json";
 // import ReactPaginate from "react-paginate";
 // import { VscChevronRight } from "react-icons/vsc";
 // import { VscChevronLeft } from "react-icons/vsc";
 import { BiFilterAlt } from "react-icons/bi";
-import { useDispatch } from "react-redux";
-import { setFilter } from "../../redux/common";
 import animatedScrollTo from "animated-scroll-to";
 import { useWindowScrollDimensions } from "hooks/WindowSroll";
 import { useHistory } from "react-router-dom";
 // import OrderInside from "components/OrderInside";
+import { observer } from "mobx-react-lite";
+import books from '../../store/books';
 
-const Orders = () => {
-  const dispatch = useDispatch();
+const Orders = observer(() => {
 
   const route = useHistory()
 
-  const [items, setItems] = useState(JsonData);
   const [itemsNav, setItemsNav] = useState(true);
   // const [pageNumber, setPageNumber] = useState(0);
 
@@ -31,7 +28,8 @@ const Orders = () => {
   const wScrollY = useWindowScrollDimensions();
 
   useEffect(() => {
-    setItems(JsonData.slice(0,75));
+    // setItems(JsonData.slice(0,75));
+    books.fetchBooks()
     animatedScrollTo(0);
   }, []);
 
@@ -45,36 +43,42 @@ const Orders = () => {
   // scrollX: 0
   // scrollY: 0
 
-  const displayItems = items.map((item, i) => {
+  const displayItems = books.data.map((book) => {
     return (
-      <div key={i} className="flex">
+      <div key={book.id} className="flex">
         <div className="w-1/18 border border-grey-border flex items-center justify-center py-1">
           <input type="checkbox" className="cursor-pointer checked:bg-blue w-5 h-5" />
         </div>
         <div className="w-1/18 border border-grey-border flex items-center justify-center py-1">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpcvH11KPSLih420G7Eq3sLi7CRc0j6zzAnQ&usqp=CAU" alt="book_image" className="w-full h-full" />
+          <img src={book.image} alt="book_image" className="w-full h-full" />
         </div>
         <div className="w-4/18 border border-grey-border flex items-center pl-2 py-1">
-          {item.name}
+          {book.title_ru}
         </div>
         <div className="w-4/18 border border-grey-border flex items-center pl-2 py-1 text-grey-black ctext-xs font-medium">
-          {"Автор" + item.name}
+          {book.author.name_ru}
         </div>
-        <div className="w-2/18 border border-grey-border flex items-center pl-2 py-1 text-grey-black ctext-xs font-medium">
-          Бумажная, аудио,PDF
+        <div className="w-2/18 border border-grey-border flex flex-col justify-center pl-2 py-1 text-grey-black ctext-xs font-medium">
+          {book.form.map((item, i) => {
+            return (
+              <div key={i}>
+                {item === "paper" ? "Бумажная" : item === "audio" ? "Аудио" : "Электронная"}
+              </div>
+            )
+          })}
         </div>
         <div className="w-2/18 border border-grey-border flex items-center justify-center pl-2 py-1 text-grey-black ctext-xs font-medium">
           <div className="bg-green-light px-2 py-0.5 rounded-md text-black">
-            562623
+            {book.quantity}
           </div>
         </div>
         <div className="w-2/18 border border-grey-border flex items-center justify-center pl-2 py-1 text-grey-black ctext-xs font-medium">
           <div className="bg-brown-light px-2 py-0.5 rounded-md text-black">
-            9653
+            {book.quantity}
           </div>
         </div>
         <div className="w-2/18 border border-grey-border flex items-center justify-center pl-2 py-1">
-          <div 
+          <div
             onClick={() => route.push('/edit-book')}
             className="p-2 bg-blue rounded-md cursor-pointer text-white text-lg">
             <BiPencil />
@@ -138,25 +142,22 @@ const Orders = () => {
       {/* navigate-to-top */}
       <BiUpArrowCircle
         onClick={() => animatedScrollTo(0)}
-        className={`${
-          wScrollY > 900 ? "-translate-y-5" : "translate-y-full"
-        } fixed transform transition-all bottom-0 right-4 text-5xl text-white cursor-pointer bg-green-light rounded-full`}
+        className={`${wScrollY > 900 ? "-translate-y-5" : "translate-y-full"
+          } fixed transform transition-all bottom-0 right-4 text-5xl text-white cursor-pointer bg-green-light rounded-full`}
       />
       {/* navigate items */}
       <div className="mt-24 mb-8 mx-4 flex text-grey-dark ctext-lg font-medium">
         <div
           onClick={() => setItemsNav(true)}
-          className={`${
-            itemsNav && "text-blue underline"
-          } hover:text-blue hover:underline cursor-pointer`}
+          className={`${itemsNav && "text-blue underline"
+            } hover:text-blue hover:underline cursor-pointer`}
         >
           Товары на сайте
         </div>
         <div
           onClick={() => setItemsNav(false)}
-          className={`${
-            !itemsNav && "text-blue underline"
-          } ml-4 hover:text-blue hover:underline cursor-pointer`}
+          className={`${!itemsNav && "text-blue underline"
+            } ml-4 hover:text-blue hover:underline cursor-pointer`}
         >
           Отключенные
         </div>
@@ -187,7 +188,6 @@ const Orders = () => {
               Удалить
             </button>
             <div
-              onClick={() => dispatch(setFilter(true))}
               className="flex items-center xl:hidden ml-4 cursor-pointer bg-blue rounded-md text-white ctext-base font-medium py-1 px-4"
             >
               <BiFilterAlt className="mr-1" />
@@ -201,7 +201,7 @@ const Orders = () => {
         {/* title */}
         <div className="flex">
           <div className="w-1/18 border border-grey-border flex items-center justify-center py-1">
-            <input type="checkbox" className="cursor-pointer w-5 h-5" />
+            {/* <input type="checkbox" className="cursor-pointer w-5 h-5" /> */}
           </div>
           <div className="w-1/18 border border-grey-border flex items-center justify-center py-1 text-grey-dark ctext-sm font-medium">
             Фото
@@ -226,7 +226,6 @@ const Orders = () => {
           </div>
         </div>
         {/* content */}
-        {/* {displayUsers} */}
         {displayItems}
         {/* footer */}
       </div>
@@ -236,6 +235,6 @@ const Orders = () => {
       {/* <OrderInside modal={modal} setModal={setModal} /> */}
     </div>
   );
-};
+});
 
 export default Orders;

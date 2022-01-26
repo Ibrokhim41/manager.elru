@@ -1,9 +1,23 @@
 import { VscChevronLeft } from "react-icons/vsc";
 import { BsTrash } from "react-icons/bs";
 import { useHistory } from "react-router-dom";
+import data from "store/categories";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { observer } from 'mobx-react-lite';
 
-const EditCategory = () => {
+const EditCategory = observer(() => {
   const route = useHistory();
+  const {id} = useParams()
+  const [updateData, setUpdateData] = useState({});
+  const sendData = {
+    id,
+    data: updateData
+  }
+
+  useEffect(() => {
+    data.getCategory(id);
+  },[id])
 
   return (
     <div className="container mx-auto mb-10 overflow-x-scroll hide-scroll">
@@ -33,18 +47,43 @@ const EditCategory = () => {
         >
           Название категории
         </label>
+        ru
         <input
+          onChange={(e) => setUpdateData({ ...updateData, title_ru: e.target.value })}
           id="category_name"
           type="text"
-          placeholder="Введите название..."
+          placeholder={data.category.title_ru}
+          className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
+        />
+        uz
+        <input
+          onChange={(e) => setUpdateData({ ...updateData, title_uz: e.target.value })}
+          id="category_name"
+          type="text"
+          placeholder={data.category.title_uz}
+          className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
+        />
+        en
+        <input
+          onChange={(e) => setUpdateData({ ...updateData, title_en: e.target.value })}
+          id="category_name"
+          type="text"
+          placeholder={data.category.title_en}
           className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
         />
       </div>
       {/*  */}
-        <button className="text-white ctext-xs w-full md:w-9/12 bg-blue border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-4">Сохранить изменения</button>
-
+      <button
+        onClick={() => {
+          updateData !== null && data.updateCategory(sendData);
+          route.push("/categories");
+        }}
+        className="text-white ctext-xs w-full md:w-9/12 bg-blue border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-4"
+      >
+        Сохранить изменения
+      </button>
     </div>
   );
-};
+});
 
 export default EditCategory;

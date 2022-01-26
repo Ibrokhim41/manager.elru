@@ -1,9 +1,22 @@
 import { VscChevronLeft } from "react-icons/vsc";
 import { BsTrash } from "react-icons/bs";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import data from 'store/data';
+import { observer } from 'mobx-react-lite';
 
-const EditAuthor = () => {
+const EditAuthor = observer(() => {
   const route = useHistory();
+  const {id} = useParams();
+  const [updateData, setUpdateData] = useState({});
+  const sendData = {
+    id,
+    data: updateData
+  }
+
+  useEffect(() => {
+    data.getAuthor(id);
+  }, [id])
 
   return (
     <div className="container mx-auto mb-10 overflow-x-scroll hide-scroll">
@@ -33,18 +46,41 @@ const EditAuthor = () => {
         >
           Имя и фамилия автора
         </label>
+        ru
         <input
+          onChange={(e) => setUpdateData({ ...updateData, name_ru: e.target.value })}
           id="category_name"
           type="text"
-          placeholder="Введите название..."
+          placeholder={data.author.name_ru}
+          className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
+        />
+        uz
+        <input
+          onChange={(e) => setUpdateData({ ...updateData, name_uz: e.target.value })}
+          id="category_name"
+          type="text"
+          placeholder={data.author.name_uz}
+          className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
+        />
+        en
+        <input
+          onChange={(e) => setUpdateData({ ...updateData, name_en: e.target.value })}
+          id="category_name"
+          type="text"
+          placeholder={data.author.name_en}
           className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
         />
       </div>
       {/*  */}
-        <button className="text-white ctext-xs w-full md:w-9/12 bg-blue border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-4">Сохранить изменения</button>
+        <button 
+          onClick={() => {
+            data.updateAuthor(sendData);
+            route.push("/authors");
+          }}
+          className="text-white ctext-xs w-full md:w-9/12 bg-blue border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-4">Сохранить изменения</button>
 
     </div>
   );
-};
+});
 
 export default EditAuthor;

@@ -2,23 +2,19 @@ import { VscAdd } from "react-icons/vsc";
 import { BsTrash } from "react-icons/bs";
 import { BiPencil } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
+import { observer } from 'mobx-react-lite';
+import data from 'store/data';
+import { useEffect, useState } from "react";
 
-const Authors = () => {
+
+const Authors = observer(() => {
   const route = useHistory();
+  const [selected, setSelected] = useState([])
 
-  const list = [
-    "Джоанна Роулинг",
-    "Сьюзен Коллинз",
-    "Джоанна Роулинг",
-    "Сьюзен Коллинз",
-    "Бизнес",
-    "Книги о Сьюзен Коллинз",
-    "Сьюзен Коллинз детей",
-    "Джоанна",
-    "Роулинг Маркетинг",
-    "Медицина Роулинг",
-    "Сьюзен Менеджмент",
-  ];
+
+  useEffect(() => {
+    data.fetchAuthors();
+  }, []) 
 
   return (
     <div className="container mx-auto mb-10">
@@ -59,37 +55,40 @@ const Authors = () => {
           </div>
         </div>
         {/*  */}
-        <div className="w-full md:w-9/12 grid grid-cols-12">
-          {list.map((item, i) => {
-            return (
-              <>
-                <div className="col-span-1 border border-grey-border flex justify-center items-center">
-                  <input
-                    type="checkbox"
-                    className="w-4 sm:w-5 h-4 sm:h-5 cursor-pointer"
-                  />
+        {data.authors.map((item) => {
+          return (
+            <div
+              key={item.id}
+              className="w-full md:w-9/12 grid grid-cols-12">
+              <div
+                className="col-span-1 border border-grey-border flex justify-center items-center"
+              >
+                <input
+                  onClick={(e) => e.currentTarget.checked ? setSelected(selected.concat(item.id)) : setSelected(selected.filter(id => id !== item.id))}
+                  type="checkbox"
+                  className="w-4 sm:w-5 h-4 sm:h-5 cursor-pointer"
+                />
+              </div>
+              <div className="col-span-11 flex justify-between items-center text-grey-dark ctext-sm  border border-grey-border py-1.5 px-2">
+                <div
+                  className="cursor-pointer hover:text-blue"
+                // onClick={() => route.push("/books-in-category")}
+                >
+                  {item.name_ru}
                 </div>
-                <div className="col-span-11 flex justify-between items-center text-grey-dark ctext-sm  border border-grey-border py-1.5 px-2">
-                  <div
-                    className="cursor-pointer hover:text-blue"
-                    // onClick={() => route.push("/books-in-category")}
-                  >
-                    {item}
-                  </div>
-                  <div
-                    onClick={() => route.push("/edit-author")}
-                    className="p-1.5 bg-blue rounded-md cursor-pointer text-white text-lg"
-                  >
-                    <BiPencil />
-                  </div>
+                <div
+                  onClick={() => route.push(`/edit-author/${item.id}`)}
+                  className="p-1.5 bg-blue rounded-md cursor-pointer text-white text-lg"
+                >
+                  <BiPencil />
                 </div>
-              </>
-            );
-          })}
-        </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
-};
+});
 
 export default Authors;

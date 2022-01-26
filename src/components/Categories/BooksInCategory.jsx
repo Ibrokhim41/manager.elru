@@ -10,6 +10,7 @@ const BooksInCategory = () => {
   const route = useHistory();
   const [showFilter, setShowFilter] = useState(false);
 
+
   return (
     <div className="container mx-auto mb-10 overflow-x-scroll hide-scroll">
       <div className="pt-24"></div>
