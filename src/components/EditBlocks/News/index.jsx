@@ -5,16 +5,18 @@ import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 // import axios from "axios";
 import moment from "moment";
+import news from "../../../store/news";
+import {observer} from "mobx-react-lite";
 
-const News = () => {
+const News = observer(() => {
   const route = useHistory();
   // eslint-disable-next-line
-  const [list, setList] = useState([])
   const [ids, setIds] = useState([])
 
   
 
   useEffect(() => {
+      news.get_news()
   }, [])
 
 
@@ -43,7 +45,8 @@ const News = () => {
           >
             Добавить статью <VscAdd className="text-md ml-1" />
           </button>
-          <button 
+          <button
+          onClick={() => news.remove_news(ids)}
             className="flex items-center justify-center mt-2 sm:mt-0 bg-red-dark rounded-md text-white ctext-base font-medium py-1 px-4">
             <BsTrash className="mr-1 text-xl" />
             Удалить
@@ -63,10 +66,10 @@ const News = () => {
           Дата публикации
         </div>
       </div>
-        {list.map((item, i) => {
+        {news.data.map((item, i) => {
           return (
             <div 
-              key={item.id}
+              key={i}
               className="w-full md:w-9/12 grid grid-cols-12">
               <div 
                 className="col-span-1 border border-grey-border flex justify-center items-center">
@@ -81,7 +84,7 @@ const News = () => {
                   className="cursor-pointer hover:text-blue"
                   // onClick={() => route.push("/books-in-category")}
                 >
-                  {item.title_ru}
+                  {item.title}
                 </div>
               </div>
               <div className="col-span-3 flex justify-between items-center text-grey-dark ctext-sm  border border-grey-border py-1.5 px-2">
@@ -105,6 +108,6 @@ const News = () => {
         })}
     </div>
   );
-};
+});
 
 export default News;
