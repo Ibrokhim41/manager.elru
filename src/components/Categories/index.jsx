@@ -4,36 +4,34 @@ import { BiPencil } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import data from "store/categories";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const Categories = observer(() => {
   const route = useHistory();
 
-  const [selected, setSelected] = useState([])
-  const [categories, setCategories] = useState([])
-  const [searchTitle, setSearchTitle] = useState('')
-
+  const [selected, setSelected] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [searchTitle, setSearchTitle] = useState("");
   const removeCategory = () => {
     // selected.length === 0 && alert("pusta")
     // selected.forEach(id => {
     //   data.removeCategory(id)
     // })
-    data.removeCategory(selected)
-  }
+    data.removeCategory(selected);
+  };
 
   useEffect(() => {
     data.fetchCategories();
-  }, [])
+  }, []);
 
   useEffect(() => {
-    if(data.searched_categories.length > 0 || searchTitle.length > 0) {
-      setCategories(data.searched_categories)
+    if (data.searched_categories.length > 0 || searchTitle.length > 0) {
+      setCategories(data.searched_categories);
     } else {
-      setCategories(data.categories)
+      setCategories(data.categories);
     }
     // eslint-disable-next-line
-  }, [data.categories, data.searched_categories])
-
+  }, [data.categories, data.searched_categories]);
 
   return (
     <div className="container mx-auto mb-10">
@@ -51,8 +49,8 @@ const Categories = observer(() => {
           </label>
           <input
             onChange={(e) => {
-              setSearchTitle(e.target.value)
-              data.searchCategory(e.target.value)
+              setSearchTitle(e.target.value);
+              data.searchCategory(e.target.value);
             }}
             id="category_name"
             type="text"
@@ -65,7 +63,8 @@ const Categories = observer(() => {
       <div className="w-full md:w-9/12 flex justify-end my-4">
         <button
           onClick={removeCategory}
-          className="flex items-center bg-red-dark rounded-md text-white ctext-base  py-1 px-4">
+          className="flex items-center bg-red-dark rounded-md text-white ctext-base  py-1 px-4"
+        >
           <BsTrash className="mr-1" />
           Удалить
         </button>
@@ -82,19 +81,23 @@ const Categories = observer(() => {
         {/*  */}
         {categories.map((item) => {
           return (
-            <div
-              key={item.id}
-              className="w-full md:w-9/12 grid grid-cols-12">
-              <div
-                className="col-span-1 border border-grey-border flex justify-center items-center">
+            <div key={item.id} className="w-full md:w-9/12 grid grid-cols-12">
+              <div className="col-span-1 border border-grey-border flex justify-center items-center">
                 <input
-                  onClick={(e) => e.currentTarget.checked ? setSelected(selected.concat(item.id)) : setSelected(selected.filter(id => id !== item.id))}
+                  onClick={(e) =>
+                    e.currentTarget.checked
+                      ? setSelected(selected.concat(item.id))
+                      : setSelected(selected.filter((id) => id !== item.id))
+                  }
                   type="checkbox"
                   className="w-4 sm:w-5 h-4 sm:h-5 cursor-pointer"
                 />
               </div>
               <div className="col-span-11 flex justify-between items-center text-grey-dark ctext-sm  border border-grey-border py-1.5 px-2">
-                <div className="cursor-pointer hover:text-blue" onClick={() => route.push("/books-in-category")}>
+                <div
+                  className="cursor-pointer hover:text-blue"
+                  onClick={() => route.push("/books-in-category")}
+                >
                   {item.title_ru}
                 </div>
                 <div

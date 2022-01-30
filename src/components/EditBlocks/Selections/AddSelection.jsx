@@ -1,9 +1,24 @@
 import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 import { IoMdImages } from "react-icons/io";
 import { useHistory } from "react-router-dom";
+import selection from "store/selection";
+import { useState } from "react";
 
 const AddSelection = () => {
   const route = useHistory();
+  const [imagePreview, setImagePreview] = useState(selection.imagePreview);
+
+  const handle_image = (file) => {
+    if (file) {
+      selection.new_data.image = file;
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+        selection.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <div className="container mx-auto mb-10 overflow-x-scroll hide-scroll">
@@ -28,6 +43,10 @@ const AddSelection = () => {
           Название подборки
         </label>
         <input
+          value={selection.new_data.detail}
+          onChange={(e) => {
+            selection.new_data.detail = e.target.value;
+          }}
           id="category_name"
           type="text"
           placeholder="Введите название..."
@@ -36,26 +55,78 @@ const AddSelection = () => {
       </div>
 
       {/*  banner */}
-      <div className="w-64 mt-4">
-        <label htmlFor="book_image3">
-          <div className="cursor-pointer border border-grey-border bg-white rounded-md w-60 h-28 flex flex-col justify-center items-center">
-            <IoMdImages className="text-4xl text-blue" />
-            <div className="text-grey-dark ctext-base">Загрузить фото</div>
+      <div className="flex mt-4">
+        <div className="w-1/4">
+          <label htmlFor="book_image3">
+            <div className="cursor-pointer border border-grey-border bg-white rounded-md w-60 h-28 flex flex-col justify-center items-center">
+              {imagePreview ? (
+                <img
+                  src={imagePreview}
+                  className="w-full h-full object-cover"
+                  alt="banner"
+                />
+              ) : (
+                <>
+                  <IoMdImages className="text-4xl text-blue" />
+                  <div className="text-grey-dark ctext-base">
+                    Загрузить фото
+                  </div>
+                </>
+              )}
+            </div>
+          </label>
+          <input
+            onChange={(e) => handle_image(e.target.files[0])}
+            type="file"
+            id="book_image3"
+            className="hidden"
+          />
+          <div className="text-grey-dark ctext-base mt-1 font-bold">Баннер</div>
+          <div className="text-grey-dark ctext-base mt-1 font-medium">
+            Минимальный размер: 640х218
           </div>
-        </label>
-        <input type="file" id="book_image3" className="hidden" />
-        <div className="text-grey-dark ctext-base mt-1 font-bold">Баннер</div>
-        <div className="text-grey-dark ctext-base mt-1 font-medium">
-          Минимальный размер: 640х218
+          <div className="text-grey-dark ctext-base mt-1 mb-1.5">Сылка:</div>
+          <input
+            type="text"
+            value={selection.new_data.link}
+            onChange={(e) => {
+              selection.new_data.link = e.target.value;
+            }}
+            placeholder="сылка"
+            className="w-60 border border-grey-border rounded-md focus:outline-none bg-white py-1.5 px-2.5 text-grey-dark ctext-xs"
+          />
         </div>
-        <div className="text-grey-dark ctext-base mt-1 mb-1.5">Сылка:</div>
-        <input
-          type="text"
-          placeholder="сылка"
-          className="w-full border border-grey-border rounded-md focus:outline-none bg-white py-1.5 px-2.5 text-grey-dark ctext-xs"
-        />
+        <div className="w-2/4">
+          <input
+            value={selection.new_data.title_uz}
+            onChange={(e) => {
+              selection.new_data.title_uz = e.target.value;
+            }}
+            type="text"
+            placeholder="Title_uz"
+            className="text-grey-dark ctext-xs w-full  bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
+          />
+          <input
+            value={selection.new_data.title_ru}
+            onChange={(e) => {
+              selection.new_data.title_ru = e.target.value;
+            }}
+            type="text"
+            placeholder="Title_ru"
+            className="text-grey-dark ctext-xs w-full mt-14  bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 "
+          />
+          <input
+            value={selection.new_data.title_en}
+            onChange={(e) => {
+              selection.new_data.title_en = e.target.value;
+            }}
+            type="text"
+            placeholder="Title_en"
+            className="text-grey-dark ctext-xs w-full mt-14  bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4"
+          />
+        </div>
       </div>
-      {/*  */}
+      {/* /banner */}
       <div className="text-black ctext-lg font-bold mt-6">
         Книги в подборке:
       </div>
@@ -69,7 +140,12 @@ const AddSelection = () => {
       </div>
 
       {/*  */}
-      <button className="text-white ctext-xs w-full md:w-9/12 bg-blue border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-4">Сохранить</button>
+      <button
+        onClick={() => selection.createSelections()}
+        className="text-white ctext-xs w-full md:w-9/12 bg-blue border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-4"
+      >
+        Сохранить
+      </button>
     </div>
   );
 };

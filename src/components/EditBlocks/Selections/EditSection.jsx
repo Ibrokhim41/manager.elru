@@ -1,10 +1,35 @@
 import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 import { IoMdImages } from "react-icons/io";
-import { useHistory } from "react-router-dom";
-
-const EditSelection = () => {
+import { useHistory, useParams } from "react-router-dom";
+import { useEffect } from "react/cjs/react.development";
+import selection from "store/selection";
+import { observer } from "mobx-react-lite";
+const EditSelection = observer(() => {
   const route = useHistory();
+  const { id } = useParams();
+  const handle_image = (file) => {
+    if (file) {
+      selection.new_data.image = file;
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        selection.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  useEffect(() => {
+    selection.getSelection(id);
+    return () => {
+      selection.new_data = {};
+      selection.imagePreview = "";
+    };
+  }, [id]);
 
+  const update_selection = () => {
+    selection.update_selection(id);
+  };
+
+  console.log(selection.new_data.image);
   return (
     <div className="container mx-auto mb-10 overflow-x-scroll hide-scroll">
       <div className="pt-24"></div>
@@ -30,30 +55,95 @@ const EditSelection = () => {
         <input
           id="category_name"
           type="text"
-          placeholder="Введите название..."
+          value={selection.new_data.detail || ""}
+          onChange={(e) => {
+            selection.new_data.detail = e.target.value;
+          }}
+          placeholder={selection.single_selection.detail}
           className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
         />
       </div>
 
       {/*  banner */}
-      <div className="w-64 mt-4">
-        <label htmlFor="book_image3">
-          <div className="cursor-pointer border border-grey-border bg-white rounded-md w-60 h-28 flex flex-col justify-center items-center">
-            <IoMdImages className="text-4xl text-blue" />
-            <div className="text-grey-dark ctext-base">Загрузить фото</div>
+      <div className="flex mt-4">
+        <div className="w-1/4">
+          <label htmlFor="book_image3">
+            <div className="cursor-pointer border border-grey-border bg-white rounded-md w-60 h-28 flex flex-col justify-center items-center">
+              {selection.new_data.image ? (
+                <img
+                  src={selection.imagePreview}
+                  className="w-full h-full object-cover"
+                  alt="banner"
+                />
+              ) : (
+                <>
+                  <IoMdImages className="text-4xl text-blue" />
+                  <div className="text-grey-dark ctext-base">
+                    Загрузить фото
+                  </div>
+                </>
+              )}
+            </div>
+          </label>
+          <input
+            onChange={(e) => handle_image(e.target.files[0])}
+            type="file"
+            id="book_image3"
+            className="hidden"
+          />
+          <div className="text-grey-dark ctext-base mt-1 font-bold">Баннер</div>
+          <div className="text-grey-dark ctext-base mt-1 font-medium">
+            Минимальный размер: 640х218
           </div>
-        </label>
-        <input type="file" id="book_image3" className="hidden" />
-        <div className="text-grey-dark ctext-base mt-1 font-bold">Баннер</div>
-        <div className="text-grey-dark ctext-base mt-1 font-medium">
-          Минимальный размер: 640х218
+          <div className="text-grey-dark ctext-base mt-1 mb-1.5">Сылка:</div>
+          <input
+            type="text"
+            value={selection.new_data.link || ""}
+            onChange={(e) => {
+              selection.new_data.link = e.target.value;
+            }}
+            placeholder={selection.single_selection.link}
+            className="w-60 border border-grey-border rounded-md focus:outline-none bg-white py-1.5 px-2.5 text-grey-dark ctext-xs"
+          />
         </div>
-        <div className="text-grey-dark ctext-base mt-1 mb-1.5">Сылка:</div>
-        <input
-          type="text"
-          placeholder="сылка"
-          className="w-full border border-grey-border rounded-md focus:outline-none bg-white py-1.5 px-2.5 text-grey-dark ctext-xs"
-        />
+        <div className="w-2/4">
+          <div>
+            <label htmlFor="title_uz">Title_uz</label>
+            <input
+              value={selection.new_data.title_uz || ""}
+              onChange={(e) => {
+                selection.new_data.title_uz = e.target.value;
+              }}
+              type="text"
+              placeholder={selection.single_selection.title_uz}
+              className="text-grey-dark ctext-xs w-full  bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
+            />
+          </div>
+          <div className="mt-6">
+            <label htmlFor="title_en">Title_ru</label>
+            <input
+              value={selection.new_data.title_ru || ""}
+              onChange={(e) => {
+                selection.new_data.title_ru = e.target.value;
+              }}
+              type="text"
+              placeholder={selection.single_selection.title_ru}
+              className="text-grey-dark ctext-xs w-full  bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 "
+            />
+          </div>
+          <div className="mt-6">
+            <label htmlFor="title_en">Title_en</label>
+            <input
+              value={selection.new_data.title_en || ""}
+              onChange={(e) => {
+                selection.new_data.title_en = e.target.value;
+              }}
+              type="text"
+              placeholder={selection.single_selection.title_en}
+              className="text-grey-dark ctext-xs w-full  bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4"
+            />
+          </div>
+        </div>
       </div>
       {/*  */}
       <div className="text-black ctext-lg font-bold mt-6">
@@ -69,11 +159,14 @@ const EditSelection = () => {
       </div>
 
       {/*  */}
-      <button className="text-white ctext-xs w-full md:w-9/12 bg-blue border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-4">
+      <button
+        onClick={update_selection}
+        className="text-white ctext-xs w-full md:w-9/12 bg-blue border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-4"
+      >
         Сохранить
       </button>
     </div>
   );
-};
+});
 
 export default EditSelection;

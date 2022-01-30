@@ -1,9 +1,13 @@
 import { VscChevronLeft } from "react-icons/vsc";
 import { IoMdImages } from "react-icons/io";
 import { useHistory } from "react-router-dom";
-
+import React, { useState } from "react";
 const MainPageBanners = () => {
   const route = useHistory();
+  const [banner, setBanner] = useState("");
+  console.log(banner);
+
+  // const add_banner = () => {};
 
   return (
     <div className="container mx-auto mb-10 overflow-x-scroll hide-scroll">
@@ -26,13 +30,18 @@ const MainPageBanners = () => {
       <div className="flex flex-wrap">
         {/* 1 */}
         <div className="w-72 mt-4 sm:m-2">
-          <label htmlFor="book_image3">
+          <label htmlFor="book_image1">
             <div className="cursor-pointer border border-grey-border bg-white rounded-md w-72 h-36 flex flex-col justify-center items-center">
               <IoMdImages className="text-4xl text-blue" />
               <div className="text-grey-dark ctext-base">Загрузить фото</div>
             </div>
           </label>
-          <input type="file" id="book_image3" className="hidden" />
+          <input
+            type="file"
+            id="book_image1"
+            onChange={(e) => setBanner(e.target.files[0])}
+            className="hidden"
+          />
           <div className="text-grey-dark ctext-base mt-1 font-bold">
             Большой баннер 1
           </div>

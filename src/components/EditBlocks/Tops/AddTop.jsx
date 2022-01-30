@@ -1,9 +1,22 @@
 import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 import { IoMdImages } from "react-icons/io";
 import { useHistory } from "react-router-dom";
-
+import { useState } from "react";
+import top100 from "../../../store/top100";
 const AddTop = () => {
   const route = useHistory();
+  const [imagePreview, setImagePreview] = useState();
+
+  const handle_image = (file) => {
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        top100.new_data.image = file;
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <div className="container mx-auto mb-10 overflow-x-scroll hide-scroll">
@@ -25,25 +38,76 @@ const AddTop = () => {
       {/*  name */}
       <div className="flex flex-col md:justify-start mt-4">
         <label htmlFor="top_name" className="text-grey-dark ctext-base ">
-          Название топа
+          Название топа UZ
         </label>
         <input
           id="top_name"
           type="text"
+          onChange={(e) => (top100.new_data.title_uz = e.target.value)}
           placeholder="Введите название..."
           className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
         />
       </div>
-
+      <div className="flex flex-col md:justify-start mt-4">
+        <label htmlFor="top_name" className="text-grey-dark ctext-base ">
+          Название топа RU
+        </label>
+        <input
+          id="top_name"
+          type="text"
+          onChange={(e) => (top100.new_data.title_ru = e.target.value)}
+          placeholder="Введите название..."
+          className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
+        />
+      </div>
+      <div className="flex flex-col md:justify-start mt-4">
+        <label htmlFor="top_name" className="text-grey-dark ctext-base ">
+          Название топа EN
+        </label>
+        <input
+          id="top_name"
+          type="text"
+          onChange={(e) => (top100.new_data.title_en = e.target.value)}
+          placeholder="Введите название..."
+          className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
+        />
+      </div>
       {/* description */}
       <div className="flex flex-col md:justify-start mt-4">
         <label htmlFor="top_description" className="text-grey-dark ctext-base ">
-        Описание
+          Описание UZ
         </label>
         <textarea
           id="top_description"
           type="text"
           rows="3"
+          onChange={(e) => (top100.new_data.content_uz = e.target.value)}
+          placeholder="Введите название..."
+          className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
+        />
+      </div>
+      <div className="flex flex-col md:justify-start mt-4">
+        <label htmlFor="top_description" className="text-grey-dark ctext-base ">
+          Описание RU
+        </label>
+        <textarea
+          id="top_description"
+          type="text"
+          rows="3"
+          onChange={(e) => (top100.new_data.content_ru = e.target.value)}
+          placeholder="Введите название..."
+          className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
+        />
+      </div>
+      <div className="flex flex-col md:justify-start mt-4">
+        <label htmlFor="top_description" className="text-grey-dark ctext-base ">
+          Описание EN
+        </label>
+        <textarea
+          id="top_description"
+          type="text"
+          rows="3"
+          onChange={(e) => (top100.new_data.content_en = e.target.value)}
           placeholder="Введите название..."
           className="text-grey-dark ctext-xs w-full md:w-9/12 bg-white border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-1"
         />
@@ -53,20 +117,34 @@ const AddTop = () => {
       <div className="w-64 mt-4">
         <label htmlFor="book_image3">
           <div className="cursor-pointer border border-grey-border bg-white rounded-md w-60 h-28 flex flex-col justify-center items-center">
-            <IoMdImages className="text-4xl text-blue" />
-            <div className="text-grey-dark ctext-base">Загрузить фото</div>
+            {imagePreview ? (
+              <img
+                src={imagePreview}
+                className="w-full h-full object-cover"
+                alt="banner"
+              />
+            ) : (
+              <>
+                <IoMdImages className="text-4xl text-blue" />
+                <div className="text-grey-dark ctext-base">Загрузить фото</div>
+              </>
+            )}
           </div>
         </label>
-        <input type="file" id="book_image3" className="hidden" />
-        <div className="text-grey-dark ctext-base mt-1 font-bold">
-          Обложка
-        </div>
+        <input
+          type="file"
+          onChange={(e) => handle_image(e.target.files[0])}
+          id="book_image3"
+          className="hidden"
+        />
+        <div className="text-grey-dark ctext-base mt-1 font-bold">Обложка</div>
         <div className="text-grey-dark ctext-base mt-1 font-medium">
           Минимальный размер: 400х266
         </div>
         <div className="text-grey-dark ctext-base mt-1 mb-1.5">Сылка:</div>
         <input
           type="text"
+          onChange={(e) => (top100.new_data.link = e.target.value)}
           placeholder="сылка"
           className="w-full border border-grey-border rounded-md focus:outline-none bg-white py-1.5 px-2.5 text-grey-dark ctext-xs"
         />
@@ -85,7 +163,10 @@ const AddTop = () => {
       </div>
 
       {/*  */}
-      <button className="text-white ctext-xs w-full md:w-9/12 bg-blue border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-4">
+      <button
+        onClick={() => top100.add_tops()}
+        className="text-white ctext-xs w-full md:w-9/12 bg-blue border border-grey-border rounded-md focus:outline-none py-2 px-4 mt-4"
+      >
         Сохранить
       </button>
     </div>
