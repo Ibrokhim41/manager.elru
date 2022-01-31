@@ -18,7 +18,7 @@ class news {
     }
 
     remove_news(ids) {
-        let url = "/ru/news/";
+        let url = "/ru/news/delete";
         ids.forEach((item, index) => {
             if (index === 0) {
                 url += `?d=${item}`;
