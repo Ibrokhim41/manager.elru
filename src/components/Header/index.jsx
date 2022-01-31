@@ -8,8 +8,8 @@ import { BiExit, BiUserCircle, BiEdit } from "react-icons/bi";
 import { Squash as Hamburger } from "hamburger-react";
 import { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import Exit from "components/Modals/Exit";
-import Delete from "components/Modals/Delete";
+import Exit from "../Modals/Exit";
+import Delete from "..//Modals/Delete";
 
 
 const Header = () => {

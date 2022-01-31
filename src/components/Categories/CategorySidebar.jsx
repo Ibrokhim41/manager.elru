@@ -3,8 +3,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { IoMdClose } from "react-icons/io";
 import { BiEraser } from "react-icons/bi";
 import { useWindowDimensions } from "../../hooks/ScreenWidth";
-import data from "store/books"
-import categories from "store/categories";
+import data from "../../store/books"
+import categories from "../../store/categories";
 import { useEffect, useState } from "react";
 
 const CategorySidebar = ({ showFilter, setShowFilter }) => {

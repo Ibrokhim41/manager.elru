@@ -3,7 +3,6 @@ import { BsTrash } from "react-icons/bs";
 import { BiPencil } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
-
 import { observer } from "mobx-react-lite";
 import selection from "../../../store/selection";
 const Selections = observer(() => {

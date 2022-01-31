@@ -1,7 +1,7 @@
 import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 import { useHistory } from "react-router-dom";
 import { observer } from 'mobx-react-lite';
-import data from "store/categories";
+import data from "../../store/categories";
 
 const AddCategory = observer(() => {
   const route = useHistory();

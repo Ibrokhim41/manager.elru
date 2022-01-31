@@ -1,7 +1,7 @@
 import { VscChevronLeft } from "react-icons/vsc";
 import { BsTrash } from "react-icons/bs";
 import { useHistory } from "react-router-dom";
-import data from "store/categories";
+import data from "../../store/categories";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { observer } from 'mobx-react-lite';

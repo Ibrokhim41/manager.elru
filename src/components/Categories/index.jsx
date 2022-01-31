@@ -3,7 +3,7 @@ import { BsTrash } from "react-icons/bs";
 import { BiPencil } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import data from "store/categories";
+import data from "../../store/categories";
 import { useEffect, useState } from "react";
 
 const Categories = observer(() => {

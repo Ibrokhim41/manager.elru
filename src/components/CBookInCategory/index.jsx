@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { observer } from 'mobx-react-lite';
-import books from "store/books";
-import categories from "store/categories";
+import books from "../../store/books";
+import categories from "../../store/categories";
 
 const BookInCategory = observer(() => {
 

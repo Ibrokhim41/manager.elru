@@ -1,21 +1,16 @@
 import "./style.css";
 import { useEffect, useState } from "react";
 import { MdBlock } from "react-icons/md";
-import Sidebar from "../Sidebar";
 import JsonData from "../../MOCK_DATA.json";
 import ReactPaginate from "react-paginate";
 import { VscChevronRight } from "react-icons/vsc";
 import { VscChevronLeft } from "react-icons/vsc";
 import { BsFilter } from "react-icons/bs";
-import { useDispatch } from "react-redux";
-import { setFilter } from "../../redux/common";
 import animatedScrollTo from "animated-scroll-to";
 import ClientInside from "components/ClientInside";
 import BlockUser from "components/Modals/BlockUser";
 
 const Clients = () => {
-  const dispatch = useDispatch();
-
   const [users, setUsers] = useState(JsonData);
   const [pageNumber, setPageNumber] = useState(0);
 
@@ -98,7 +93,6 @@ const Clients = () => {
           activeClassName="text-white bg-blue"
         />
         <BsFilter
-          onClick={() => dispatch(setFilter(true))}
           className="lg:hidden cursor-pointer text-4xl text-blue"
         />
       </div>
@@ -114,7 +108,6 @@ const Clients = () => {
         {/* content */}
         {displayUsers}
       </div>
-      <Sidebar />
       <ClientInside modal={modal} setModal={setModal} />
       <BlockUser bolck={block} setBlock={setBlock} />
     </div>

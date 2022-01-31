@@ -2,9 +2,9 @@ import { VscChevronLeft } from "react-icons/vsc";
 import { BsTrash } from "react-icons/bs";
 import { BiFilterAlt } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
-import BookInCategory from "components/CBookInCategory";
 import CategorySidebar from "./CategorySidebar";
 import { useState } from "react";
+import CBookInCategory from "../CBookInCategory";
 
 const BooksInCategory = () => {
   const route = useHistory();
@@ -45,7 +45,7 @@ const BooksInCategory = () => {
 
       {/* table */}
       <div className="orders-table w-full xl:w-9/12 mt-4 pr-4 md:pr-0">
-        <BookInCategory />
+        <CBookInCategory />
       </div>
 
       <CategorySidebar showFilter={showFilter} setShowFilter={setShowFilter} />

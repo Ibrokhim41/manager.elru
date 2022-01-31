@@ -60,7 +60,6 @@ const ClientInside = ({ modal, setModal }) => {
           <div className="text-grey-dark ctext-lg font-bold mb-7">
             История заказов:
           </div>
-
           {/* table */}
           <div className="flex flex-wrap">
             <div className="w-full sm:w-1/3 md:w-1/4 cursor-pointer bg-grey-light text-center text-grey-dark ctext-base rounded-md border border-grey-border py-1 m-1">

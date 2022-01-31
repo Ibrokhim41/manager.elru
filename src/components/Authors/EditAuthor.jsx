@@ -2,7 +2,7 @@ import { VscChevronLeft } from "react-icons/vsc";
 import { BsTrash } from "react-icons/bs";
 import { useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import data from 'store/data';
+import data from '../../store/data';
 import { observer } from 'mobx-react-lite';
 
 const EditAuthor = observer(() => {
