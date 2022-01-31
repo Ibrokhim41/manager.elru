@@ -1,14 +1,12 @@
+import React from 'react';
 import {VscChevronLeft} from "react-icons/vsc";
 import {IoMdImages} from "react-icons/io";
 import {useHistory} from "react-router-dom";
-import {useState} from 'react';
-import {React} from 'react';
 import news from "../../../store/news";
 import {observer} from "mobx-react-lite";
 
 const AddNews = observer(() => {
     const route = useHistory();
-    const [data, setData] = useState({})
 
 
     return (<div className="container mx-auto mb-10 overflow-x-scroll hide-scroll">
