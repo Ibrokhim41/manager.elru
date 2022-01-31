@@ -84,7 +84,7 @@ const News = observer(() => {
                   className="cursor-pointer hover:text-blue"
                   // onClick={() => route.push("/books-in-category")}
                 >
-                  {item.title}
+                  {item.title_ru}
                 </div>
               </div>
               <div className="col-span-3 flex justify-between items-center text-grey-dark ctext-sm  border border-grey-border py-1.5 px-2">
