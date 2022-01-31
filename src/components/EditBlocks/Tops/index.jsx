@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 import top100 from "store/top100";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
-import { useState } from "react/cjs/react.development";
 const Tops = observer(() => {
   const route = useHistory();
   useEffect(() => {
