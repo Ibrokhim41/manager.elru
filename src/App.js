@@ -39,7 +39,7 @@ import SmillarBooks from "./components/Orders/SmillarBooks";
 const App = observer(() => {
   // eslint-disable-next-line
   useEffect(() => {}, [data.loged]);
-  console.log(sessionStorage.getItem("token"));
+  // console.log(sessionStorage.getItem("token"));
   useEffect(() => {
     data.refreshToken();
     // eslint-disable-next-line
