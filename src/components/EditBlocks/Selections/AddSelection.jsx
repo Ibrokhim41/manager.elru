@@ -1,8 +1,9 @@
 import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 import { IoMdImages } from "react-icons/io";
 import { useHistory } from "react-router-dom";
-import selection from "store/selection";
+
 import { useState } from "react";
+import selection from "../../../store/selection";
 
 const AddSelection = () => {
   const route = useHistory();

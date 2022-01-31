@@ -2,8 +2,8 @@ import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 import { IoMdImages } from "react-icons/io";
 import { useHistory, useParams } from "react-router-dom";
 import { useEffect } from "react/cjs/react.development";
-import selection from "store/selection";
 import { observer } from "mobx-react-lite";
+import selection from "../../../store/selection";
 const EditSelection = observer(() => {
   const route = useHistory();
   const { id } = useParams();

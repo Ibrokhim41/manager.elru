@@ -2,9 +2,9 @@ import {VscChevronLeft, VscAdd} from "react-icons/vsc";
 import {BsTrash} from "react-icons/bs";
 import {BiPencil} from "react-icons/bi";
 import {useHistory} from "react-router-dom";
-import top100 from "store/top100";
 import {observer} from "mobx-react-lite";
 import {useEffect} from "react";
+import top100 from "../../../store/top100";
 
 const Tops = observer(() => {
     const route = useHistory();

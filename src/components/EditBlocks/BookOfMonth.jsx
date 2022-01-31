@@ -2,7 +2,7 @@ import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 import { IoMdImages } from "react-icons/io";
 import { useHistory } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import monthbook from "store/monthbook";
+import monthbook from "../../store/monthbook";
 const BookOfMonth = observer(() => {
   const route = useHistory();
   return (

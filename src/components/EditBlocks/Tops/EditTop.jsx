@@ -1,7 +1,7 @@
 import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 import { IoMdImages } from "react-icons/io";
 import { useHistory, useParams } from "react-router-dom";
-import top100 from "store/top100";
+import top100 from "../../../store/top100";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 

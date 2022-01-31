@@ -9,7 +9,7 @@ import EditBook from "./components/Orders/EditBook";
 import Categories from "./components/Categories";
 import AddCategory from "./components/Categories/AddCategory";
 import AddBooksFromCat from "./components/Categories/AddBooksFromCat";
-import EditCatigory from "./components/Categories/EditCategory";
+import EditCategory from "./components/Categories/EditCategory";
 import BooksInCategory from "./components/Categories/BooksInCategory";
 import Authors from "./components/Authors";
 import EditAuthor from "./components/Authors/EditAuthor";
@@ -60,7 +60,7 @@ const App = observer(() => {
               <Route path="/add-smillar-books" component={SmillarBooks} />
               <Route path="/managers" component={Managers} />
               <Route path="/add-category" component={AddCategory} />
-              <Route path="/edit-category/:id" component={EditCatigory} />
+              <Route path="/edit-category/:id" component={EditCategory} />
               <Route path="/books-in-category" component={BooksInCategory} />
               <Route path="/add-books-from-cat" component={AddBooksFromCat} />
               <Route path="/authors" component={Authors} />
