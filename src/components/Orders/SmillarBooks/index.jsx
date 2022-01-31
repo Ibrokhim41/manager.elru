@@ -2,7 +2,7 @@ import { VscChevronLeft } from "react-icons/vsc";
 import { MdAdd } from "react-icons/md";
 import { BiFilterAlt } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
-import BookInCategory from "components/CBookInCategory";
+import CBookInCategory from "../../CBookInCategory";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 
@@ -44,7 +44,7 @@ const SmillarBooks = () => {
 
       {/* table */}
       <div className="orders-table w-full xl:w-9/12 mt-4 pr-4 md:pr-0">
-        <BookInCategory />
+        <CBookInCategory />
       </div>
       <Sidebar showFilter={showFilter} setShowFilter={setShowFilter} />
     </div>

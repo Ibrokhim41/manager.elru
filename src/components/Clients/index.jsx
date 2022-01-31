@@ -7,8 +7,8 @@ import { VscChevronRight } from "react-icons/vsc";
 import { VscChevronLeft } from "react-icons/vsc";
 import { BsFilter } from "react-icons/bs";
 import animatedScrollTo from "animated-scroll-to";
-import ClientInside from "components/ClientInside";
-import BlockUser from "components/Modals/BlockUser";
+import ClientInside from "../ClientInside";
+import BlockUser from "../Modals/BlockUser";
 
 const Clients = () => {
   const [users, setUsers] = useState(JsonData);

@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 
 const AddAuthor = () => {
   const route = useHistory();
-
   return (
     <div className="container mx-auto mb-10">
       <div className="pt-24"></div>
