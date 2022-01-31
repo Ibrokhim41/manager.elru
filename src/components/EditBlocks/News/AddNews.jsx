@@ -139,18 +139,14 @@ const AddNews = observer(() => {
                 <label htmlFor="book_image3">
                     <div
                         className="cursor-pointer border border-grey-border bg-white rounded-md w-60 h-28 flex flex-col justify-center items-center">
-                        {news.new_data.image ? (
-                            <img
-                                src={URL.createObjectURL(news.new_data.image)}
-                                className="w-full h-full object-cover"
-                                alt="banner"
-                            />
-                        ) : (
-                            <>
-                                <IoMdImages className="text-4xl text-blue"/>
-                                <div className="text-grey-dark ctext-base">Загрузить фото</div>
-                            </>
-                        )}
+                        {news.new_data.image ? (<img
+                            src={URL.createObjectURL(news.new_data.image)}
+                            className="w-full h-full object-cover"
+                            alt="banner"
+                        />) : (<>
+                            <IoMdImages className="text-4xl text-blue"/>
+                            <div className="text-grey-dark ctext-base">Загрузить фото</div>
+                        </>)}
                     </div>
                 </label>
                 <input
@@ -165,56 +161,60 @@ const AddNews = observer(() => {
                     Минимальный размер: 640х290
                 </div>
             </div>
-            {/*/!* 2 *!/*/}
-            {/*<div className="w-64 mt-4">*/}
-            {/*    <label htmlFor="book_image4">*/}
-            {/*        <div*/}
-            {/*            style={{backgroundImage: `url(${images.image1})`}}*/}
-            {/*            className={`bg-cover bg-center cursor-pointer border border-grey-border bg-white rounded-md w-60 h-28 flex flex-col justify-center items-center`}>*/}
-            {/*            {!images.image1 && (<IoMdImages className="text-4xl text-blue"/>)}*/}
-            {/*            {!images.image1 && <div className={`text-grey-dark ctext-base`}>Загрузить фото</div>}*/}
-            {/*        </div>*/}
-            {/*    </label>*/}
-            {/*    <input*/}
-            {/*        onChange={(e) => {*/}
-            {/*            setImages({...images, image1: URL.createObjectURL(e.target.files[0])})*/}
-            {/*            setData({...data, image1: e.target.files[0]})*/}
-            {/*        }}*/}
-            {/*        type="file"*/}
-            {/*        id="book_image4"*/}
-            {/*        className="hidden"/>*/}
-            {/*    <div className="text-grey-dark ctext-base mt-1 font-bold">*/}
-            {/*        Первое фото статьи*/}
-            {/*    </div>*/}
-            {/*    <div className="text-grey-dark ctext-base mt-1 font-medium">*/}
-            {/*        Минимальный размер: 777х544*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-            {/*/!* 3 *!/*/}
-            {/*<div className="w-64 mt-4">*/}
-            {/*    <label htmlFor="book_image5">*/}
-            {/*        <div*/}
-            {/*            style={{backgroundImage: `url(${images.image2})`}}*/}
-            {/*            className={`bg-cover bg-center cursor-pointer border border-grey-border bg-white rounded-md w-60 h-28 flex flex-col justify-center items-center`}>*/}
-            {/*            {!images.image2 && (<IoMdImages className="text-4xl text-blue"/>)}*/}
-            {/*            {!images.image2 && <div className={`text-grey-dark ctext-base`}>Загрузить фото</div>}*/}
-            {/*        </div>*/}
-            {/*    </label>*/}
-            {/*    <input*/}
-            {/*        onChange={(e) => {*/}
-            {/*            setImages({...images, image2: URL.createObjectURL(e.target.files[0])})*/}
-            {/*            setData({...data, image2: e.target.files[0]})*/}
-            {/*        }}*/}
-            {/*        type="file"*/}
-            {/*        id="book_image5"*/}
-            {/*        className="hidden"/>*/}
-            {/*    <div className="text-grey-dark ctext-base mt-1 font-bold">*/}
-            {/*        Второе фото статьи*/}
-            {/*    </div>*/}
-            {/*    <div className="text-grey-dark ctext-base mt-1 font-medium">*/}
-            {/*        Минимальный размер: 777х544*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+            {/* 2 */}
+            <div className="w-64 mt-4">
+                <label htmlFor="book_image4">
+                    <div
+                        className="cursor-pointer border border-grey-border bg-white rounded-md w-60 h-28 flex flex-col justify-center items-center">
+                        {news.new_data.image1 ? (<img
+                            src={URL.createObjectURL(news.new_data.image1)}
+                            className="w-full h-full object-cover"
+                            alt="banner"
+                        />) : (<>
+                            <IoMdImages className="text-4xl text-blue"/>
+                            <div className="text-grey-dark ctext-base">Загрузить фото</div>
+                        </>)}
+                    </div>
+                </label>
+                <input
+                    onChange={(e) => news.new_data.image1 = e.target.files[0]}
+                    type="file"
+                    id="book_image4"
+                    className="hidden"/>
+                <div className="text-grey-dark ctext-base mt-1 font-bold">
+                    Первое фото статьи
+                </div>
+                <div className="text-grey-dark ctext-base mt-1 font-medium">
+                    Минимальный размер: 777х544
+                </div>
+            </div>
+            {/* 3 */}
+            <div className="w-64 mt-4">
+                <label htmlFor="book_image5">
+                    <div
+                        className="cursor-pointer border border-grey-border bg-white rounded-md w-60 h-28 flex flex-col justify-center items-center">
+                        {news.new_data.image2 ? (<img
+                            src={URL.createObjectURL(news.new_data.image2)}
+                            className="w-full h-full object-cover"
+                            alt="banner"
+                        />) : (<>
+                            <IoMdImages className="text-4xl text-blue"/>
+                            <div className="text-grey-dark ctext-base">Загрузить фото</div>
+                        </>)}
+                    </div>
+                </label>
+                <input
+                    onChange={(e) => news.new_data.image2 = e.target.files[0]}
+                    type="file"
+                    id="book_image5"
+                    className="hidden"/>
+                <div className="text-grey-dark ctext-base mt-1 font-bold">
+                    Второе фото статьи
+                </div>
+                <div className="text-grey-dark ctext-base mt-1 font-medium">
+                    Минимальный размер: 777х544
+                </div>
+            </div>
         </div>
 
         {/*  */}

@@ -8,6 +8,7 @@ class news {
     constructor() {
         makeAutoObservable(this)
     }
+
     get_news() {
         axios_instance.get('/ru/news').then((res) => {
             this.data = res.data
@@ -15,12 +16,13 @@ class news {
             console.log(error)
         })
     }
+
     remove_news(ids) {
         let url = "/ru/news/";
         ids.forEach((item, index) => {
-            if(index === 0) {
+            if (index === 0) {
                 url += `?d=${item}`;
-            }else {
+            } else {
                 url += `&d=${item}`
             }
         })
@@ -30,9 +32,12 @@ class news {
             console.log(err)
         })
     }
+
     create_news() {
         let form_data = new FormData()
         form_data.append('image', this.new_data.image)
+        form_data.append('image1', this.new_data.image1)
+        form_data.append('image2', this.new_data.image2)
         form_data.append('title', this.new_data.title)
         form_data.append('content', this.new_data.content)
         form_data.append('info', this.new_data.info)
