@@ -79,7 +79,7 @@ class top100 {
         form_data.append("content_en", this.new_data.content_en);
 
         axios
-            .post(`${api_url}/ru/blocks/top100/update/${id}`, form_data, config)
+            .patch(`${api_url}/ru/blocks/top100/update/${id}/`, form_data, config)
             .then((res) => {
                 console.log(res);
             })

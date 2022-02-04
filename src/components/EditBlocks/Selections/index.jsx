@@ -37,7 +37,7 @@ const Selections = observer(() => {
             Добавить подборку <VscAdd className="text-md ml-1" />
           </button>
           <button
-            onClick={() => selection.removeSelection(selector)}
+            onClick={() => selection.removeSelection(selector, setSelector)}
             className="flex items-center justify-center mt-2 sm:mt-0 bg-red-dark rounded-md text-white ctext-base font-medium py-1 px-4"
           >
             <BsTrash className="mr-1 text-xl" />

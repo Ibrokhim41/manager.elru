@@ -42,14 +42,15 @@ class selections {
         axios
             .post(`${api_url}/ru/blocks/collection/create/`, form_data, config)
             .then((res) => {
-                console.log(res);
+                this.imagePreview = ""
+                this.new_data = {}
             })
             .catch((err) => {
                 console.log(err);
             });
     }
 
-    removeSelection(data) {
+    removeSelection(data, setSelector) {
         let url = `${api_url}/ru/blocks/collection/delete/`;
         data.forEach((element, index) => {
             if (index === 0) {
@@ -63,6 +64,7 @@ class selections {
             .get(url, config)
             .then(() => {
                 this.fetchSelections();
+                setSelector([])
             })
             .catch((err) => {
                 console.log(err);
@@ -94,8 +96,7 @@ class selections {
         form_data.append("title_en", this.new_data.title_en);
         axios
             .patch(`${api_url}/ru/blocks/collection/update/${id}/`, form_data, config)
-            .then(() => {
-            })
+            .then(() => {})
             .catch((err) => {
                 console.log(err);
             });
