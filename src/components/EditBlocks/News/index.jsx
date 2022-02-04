@@ -58,7 +58,7 @@ const News = observer(() => {
       <div className="w-full md:w-9/12 grid grid-cols-12  mt-4">
         <div className="col-span-1 border border-grey-border"></div>
         <div 
-          onClick={() => console.log(ids)}
+          onClick={() => console.log(ids, setIds)}
           className="col-span-7 text-grey-dark ctext-sm  border border-grey-border py-1.5 px-2">
           Название
         </div>

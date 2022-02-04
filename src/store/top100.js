@@ -34,6 +34,7 @@ class top100 {
     add_tops() {
         let form_data = new FormData();
         form_data.append("image", this.new_data.image);
+
         form_data.append("link", this.new_data.link);
         form_data.append("title_uz", this.new_data.title_uz);
         form_data.append("title_ru", this.new_data.title_ru);
@@ -43,7 +44,7 @@ class top100 {
         form_data.append("content_en", this.new_data.content_en);
 
         axios
-            .post(`${api_url}/ru/blocks/top100/create`, form_data, config)
+            .post(`${api_url}/ru/blocks/top100/create/`, form_data, config)
             .then((res) => {
                 console.log(res);
             })
@@ -66,7 +67,9 @@ class top100 {
 
     save_tops(id) {
         let form_data = new FormData();
-        form_data.append("image", this.new_data.image);
+        if (typeof this.new_data.image == "object") {
+            form_data.append("image", this.new_data.image);
+        }
         form_data.append("link", this.new_data.link);
         form_data.append("title_uz", this.new_data.title_uz);
         form_data.append("title_ru", this.new_data.title_ru);
