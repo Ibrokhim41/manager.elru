@@ -102,6 +102,7 @@ class news {
             .then((res) => {
                 console.log(res);
                 this.get_news();
+                this.new_data = {}
             })
             .catch((err) => {
                 console.log(err);
