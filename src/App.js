@@ -53,7 +53,7 @@ const App = observer(() => {
           <Route path="/" component={Login} exact />
 //           {sessionStorage.getItem("token") && (
 //           {true && (
-            <>
+            (<>
               <Route path="/orders" component={Orders} />
               <Route path="/categories" component={Categories} />
               <Route path="/add-book" component={AddBook} />
@@ -87,7 +87,7 @@ const App = observer(() => {
               <Route path="/users" component={Users} />
               <Route path="/chat" component={Chat} />
               <Route path="/example" component={Example} />
-            </>
+            </>)
 //           )}
         </Switch>
       </Router>
