@@ -51,7 +51,8 @@ const App = observer(() => {
         <Header />
         <Switch>
           <Route path="/" component={Login} exact />
-          {sessionStorage.getItem("token") && (
+//           {sessionStorage.getItem("token") && (
+          {true && (
             <>
               <Route path="/orders" component={Orders} />
               <Route path="/categories" component={Categories} />
